@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
   with_options presence: true do
     validates :serving
     validates :name, length: { minimum: 6 }
-    validates :introduction, length: {minimum: 6 }
+    validates :introduction, length: { minimum: 6 }
     validates :ingredientsz
     validates :procedures
   end
