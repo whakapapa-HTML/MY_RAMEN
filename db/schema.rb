@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_015848) do
 
   create_table "procedures", force: :cascade do |t|
     t.integer "recipe_id", null: false
-    t.string "procedure_image_id", null: false
+    t.string "procedure_image_id"
     t.text "explanation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
