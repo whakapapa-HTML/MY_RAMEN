@@ -74,4 +74,4 @@ gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'fog-aws'
 gem 'dotenv-rails'
-
+gem 'bootstrap', '~> 4.5'

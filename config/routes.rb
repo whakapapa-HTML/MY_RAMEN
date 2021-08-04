@@ -13,10 +13,11 @@ Rails.application.routes.draw do
     registrations: 'public/users/registrations'
   }
 
-  scope module: :admin do
+  #Helperにadminをつけるためnamespaceを使う
+  namespace  :admin do
     root to: 'homes#top'
-    get 'searches', to: 'searches#search'
-    get 'searches', to: 'searches#index'
+    get 'admin/recipes', to: 'searches#index'
+    get 'admin/searches', to: 'searches#search'
     resources :users, except: [:create, :new, :destroy]
     resources :genres
     resources :recipes, only: [:index, :show, :destroy]
@@ -26,14 +27,14 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
     resources :bookmarks, only: [:create, :destroy]
-    resources :recipes, only: [:create, :destroy]
+    resources :recipes
     get 'confirm', to: 'recipes#confirm'
     resources :reviews, except: [:show, :edit, :update]
     resources :users, only: [:show, :edit, :update]
-    get 'users/cancel', to: 'searches#cancel'
-    get 'users/unsubscribe', to: 'searches#unsubscribe'
+    get 'user/cancel', to: 'users#cancel'
+    get 'user/unsubscribe', to: 'users#unsubscribe'
     get 'recipes', to: 'searches#index'
-    get 'searches', to: 'searches#search'
+    get 'user/searches', to: 'searches#search'
     get 'rankings', to: 'rankings#index'
   end
 
