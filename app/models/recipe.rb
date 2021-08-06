@@ -9,14 +9,13 @@ class Recipe < ApplicationRecord
 
   mount_uploader :recipe_image, RecipeImageUploader
 
-  accepts_nested_attributes_for :ingredients, :procedures, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
 
   with_options presence: true do
     validates :serving
-    validates :name, length: { minimum: 6 }
+    validates :name
     validates :introduction, length: { minimum: 6 }
     validates :ingredients
-    validates :procedures
   end
 
 end

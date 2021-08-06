@@ -27,8 +27,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
     resources :bookmarks, only: [:create, :destroy]
-    resources :recipes
-    get 'confirm', to: 'recipes#confirm'
+    resources :recipes do
+      get 'confirm', to: 'recipes#confirm'
+      resources :procedures, only: [:new, :create]
+    end
     resources :reviews, except: [:show, :edit, :update]
     resources :users, only: [:show, :edit, :update]
     get 'user/cancel', to: 'users#cancel'
