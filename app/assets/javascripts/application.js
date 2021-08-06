@@ -19,3 +19,30 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require cocoon
+
+/*global $*/
+
+
+$(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $('#img_prev').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#procedure_img").change(function() {
+        readURL(this);
+      });
+    });
+
+
+$('head').append(
+'<style>body{display:none;}'  //body {display:none;}を指定して要素を隠す
+);
+$(window).on("load", function() {
+$('body').delay(600).fadeIn("slow");
+});

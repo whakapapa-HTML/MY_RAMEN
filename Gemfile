@@ -68,6 +68,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'ransack', '~> 2.4', '>= 2.4.2'
 gem 'font-awesome-sass', '~> 5.13'
+gem 'cocoon'
 gem 'jquery-rails', '~> 4.4'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'carrierwave', '~> 2.0'
