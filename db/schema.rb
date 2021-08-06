@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2021_08_05_141917) do
     t.text "explanation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
     t.string "procedure_image"
   end
 
