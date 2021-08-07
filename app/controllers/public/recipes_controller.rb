@@ -26,12 +26,18 @@ class Public::RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
   end
 
   def update
+    recipe = Recipe.find(params[:id])
+    recipe.update(recipe_params)
+    redirect_to recipe_path(recipe)
   end
 
   def destroy
+    @recipe = Recipe.find_by(params[:recipe_id]).destroy
+    redirect_to user_path(current_user)
   end
 
   private
@@ -45,8 +51,8 @@ class Public::RecipesController < ApplicationController
         :serving,
         :recipe_image,
         :recipe_image_cache,
-        ingredients_attributes: [:name, :amount, :_destroy],
-        procedures_attributes: [:explanation, :procedure_image, :_destroy]
+        ingredients_attributes: [:id, :name, :amount, :_destroy],
+        procedures_attributes: [:id, :explanation, :procedure_image, :procedure_image_cache, :_destroy]
     )
     end
 

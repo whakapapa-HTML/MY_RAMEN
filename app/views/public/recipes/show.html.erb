@@ -2,6 +2,9 @@
   <div class="col-6">
     <h1><%= @recipe.name %></h1>
     <h4><%= @recipe.introduction %></h4><small class="text-muted">By</small><%= @recipe.user.name %><small class="text-muted"> | <%= @recipe.created_at.to_s(:datetime_jp) %></small>
+    <% if @recipe.user == current_user %>
+    <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete %>
+    <% end %>
     <div class="border rounded p-4 mt-5">
       <h4 class="mt-4"><%= @recipe.serving %>人前</h4>
       <table class="table">
