@@ -1,0 +1,16 @@
+<div class="container">
+  <%= form_with model: @genre, url: admin_genres_path, method: :post, id: 'new_genre', class: 'new_genre form-horizontal', local: true do |f| %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :genre_image %>
+      <%= f.file_field :genre_image %>
+       <%= f.submit "新規作成", class: "btn btn-success btn-block col-2" %>
+    </div>
+
+  <% end %>
+</div>

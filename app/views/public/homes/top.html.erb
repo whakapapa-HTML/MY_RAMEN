@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <% @genres.each do |genre| %>
+    <div class="col-6">
+      <%= link_to image_tag(genre.genre_image.url, :size => '320x220'), recipes_path %>
+      <%= genre.name %>
+    </div>
+    <% end %>
+  </div>
+</div>

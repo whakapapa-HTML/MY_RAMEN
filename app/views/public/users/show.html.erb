@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="tab-area">
+    <div class="tab active">
+      会員情報
+    </div>
+    <div class="tab">
+      レシピ
+    </div>
+    <div class="tab">
+      フォロー
+    </div>
+    <div class="tab">
+      フォロワー
+    </div>
+    <div class="tab">
+      ブックマーク
+    </div>
+  </div>
+  <div class="content-area">
+    <div class="content show">
+      <%= @user.name %></br>
+      <%= @user.introduction %>
+    </div>
+    <div class="content">
+      <div class="col-8 m-auto">
+        <table class="table table-hover small">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">レシピ名</th>
+            <th scope="col">レシピ紹介</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.recipes.each_with_index do |recipe, i| %>
+          <tr>
+            <th scope="row"><%= i + 1 %></th>
+            <td><%= link_to recipe.name, recipe_path(recipe.id) %></td>
+            <td><%= recipe.introduction %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="content">
+      タブ３の中身です
+    </div>
+    <div class="content">
+      タブ４の中身です
+    </div>
+    <div class="content">
+      タブ５の中身です
+    </div>
+  </div>
+</div>

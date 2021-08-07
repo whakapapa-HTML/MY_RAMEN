@@ -1,0 +1,15 @@
+<div class="nested-fields d-flex">
+  <div class="form-group  col-5">
+    <%= f.label :材料名 %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group  col-5">
+    <%= f.label :分量　※グラム単位で記入 %>
+    <%= f.number_field :amount, class: "form-control" , step: '0.1', id:"ingredient-amount", min:"0" %>
+  </div>
+  <div class="form-group col-2 mt-auto">
+    <%= link_to_remove_association "削除", f, class: "btn btn-danger" %>
+  </div>
+</div>
+
+

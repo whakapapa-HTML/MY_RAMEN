@@ -7,8 +7,8 @@ class Recipe < ApplicationRecord
   belongs_to	:user, optional: true
   belongs_to	:genre
 
-  mount_uploader :recipe_image, RecipeImageUploader
   attr_accessor :recipe_image_cache
+  mount_uploader :recipe_image, RecipeImageUploader
 
   accepts_nested_attributes_for :ingredients, :procedures, allow_destroy: true
 

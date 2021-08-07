@@ -27,7 +27,6 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
     resources :bookmarks, only: [:create, :destroy]
-    post "confirm", to: "recipes#confirm"
     resources :recipes
     resources :procedures, only: [:new, :create]
     resources :reviews, except: [:show, :edit, :update]
