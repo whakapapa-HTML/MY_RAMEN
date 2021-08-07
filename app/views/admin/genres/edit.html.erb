@@ -1,0 +1,16 @@
+<div class="container">
+  <%= form_with model: @genre, url: admin_genre_path, id: 'update_genre', class: 'update_genre form-horizontal', local: true do |f| %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :genre_image %>
+      <%= f.file_field :genre_image %>
+       <%= f.submit "更新", class: "btn btn-success btn-block col-2" %>
+    </div>
+
+  <% end %>
+</div>

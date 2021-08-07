@@ -1,0 +1,25 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ジャンルID</th>
+        <th scope="col">ジャンル名</th>
+        <th scope="col">ジャンル画像</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <th class="align-middle" scope="row"><%= @genre.id %></th>
+      <td class="align-middle"><%= @genre.name %></td>
+      <td><%= image_tag @genre.genre_image.url, :size => '180x120' %></td>
+      <td class="align-middle"><%= link_to "編集", edit_admin_genre_path(@genre.id) %></td>
+      <td class="align-middle"><%= link_to "削除", admin_genre_path(@genre.id), method: :delete, data:
+        { confirm: "#{ @genre.name }を削除しますか？",
+          cancel: 'キャンセル',
+          commit: '削除'}, title: '削除の確認'  %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

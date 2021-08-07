@@ -1,0 +1,24 @@
+<div class="container">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ジャンルID</th>
+        <th scope="col">ジャンル名</th>
+        <th scope="col">ジャンル画像</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+        <th class="align-middle" scope="row"><%= genre.id %></th>
+        <td class="align-middle thumbnail"><%= genre.name %></td>
+        <td><%= image_tag genre.genre_image.url, :size => '180x120' %></td>
+        <td class="align-middle"><%= link_to "詳細", admin_genre_path(genre.id) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="col-2 btn btn-primary"><strong><%= link_to "ジャンルを追加する", new_admin_genre_path, class: "text-white" %></strong></div>
+</div>
+

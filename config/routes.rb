@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     get 'about', to: 'homes#about'
     resources :bookmarks, only: [:create, :destroy]
     resources :recipes
-    get 'confirm', to: 'recipes#confirm'
     resources :procedures, only: [:new, :create]
     resources :reviews, except: [:show, :edit, :update]
     resources :users, only: [:show, :edit, :update]
