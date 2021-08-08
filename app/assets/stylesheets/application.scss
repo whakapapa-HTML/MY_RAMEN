@@ -13,3 +13,40 @@
  *= require_tree .
  *= require_self
  */
+
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+
+.tab-area {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  cursor: pointer;
+  .tab {
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: black;
+    border-right: 1px solid #50637b;
+    border-left: 1px solid #222e3e;
+  }
+  .tab.active {
+    background-color: #ccc;
+    color: #222e3e;
+    border: none;
+  }
+}
+.content-area {
+  font-size: 30px;
+  text-align: center;
+  .content {
+    display: none;
+  }
+  .content.show {
+    margin-top: 50px;
+    display: block;
+  }
+}

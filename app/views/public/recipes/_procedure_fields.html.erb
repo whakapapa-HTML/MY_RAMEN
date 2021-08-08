@@ -1,0 +1,13 @@
+<div class="nested-fields d-flex">
+  <div class="form-group  col-5">
+    <%= f.label :調理方法 %>
+    <%= f.text_field :explanation, class: "form-control" %>
+  </div>
+  <div class="form-group  col-5">
+    <%= f.label :調理画像 %>
+    <%= f.file_field :procedure_image, class: "form-control-file"%>
+  </div>
+  <div class="form-group col-2 mt-auto">
+    <%= link_to_remove_association "#{icon 'fas', 'trash-alt'}".html_safe , f, class: "btn btn-danger" %>
+  </div>
+</div>
