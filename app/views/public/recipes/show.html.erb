@@ -1,9 +1,25 @@
 <div class="container d-flex">
   <div class="col-6">
     <h1><%= @recipe.name %></h1>
-    <h4><%= @recipe.introduction %></h4><small class="text-muted">By</small><%= @recipe.user.name %><small class="text-muted"> | <%= @recipe.created_at.to_s(:datetime_jp) %></small>
+    <h4><%= @recipe.introduction %></h4><small class="text-muted mr-1">By</small><%= @recipe.user.name %><small class="text-muted"> | 作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
+    <% if @recipe.user == current_user %>
+    <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
+        { confirm: "#{ @recipe.name }をあなたのレシピから削除しますか？",
+          cancel: 'キャンセル',
+          commit: '削除'}, title: '削除の確認'  %>
+    <% end %>
     <div class="border rounded p-4 mt-5">
-      <h4 class="mt-4"><%= @recipe.serving %>人前</h4>
+      <div class="d-flex">
+        <h4 class="mr-3"><%= @recipe.serving %>人分</h4>
+        <%= form_with model: @recipe, url: recipe_path, method: :patch, remote: true do |f| %>
+          <%= f.select :serving, options_for_select(1..30) %>
+          <% @recipe.ingredients.each do |ingredient| %>
+            <%= f.hidden_field :per_amount, :value => ingredient.per_amount %>
+          <% end %>
+          <%= f.label :人分へ %>
+          <%= f.submit "変換する" %>
+        <% end %>
+      </div>
       <table class="table">
         <thead>
           <tr>
@@ -17,7 +33,7 @@
           <tr>
             <th scope="row"><%= i + 1 %>.</th>
             <td><%= ingredient.name %></td>
-            <td><%= ingredient.amount %>g</td>
+            <td><%= ingredient.amount.floor(2) %>g</td>
           </tr>
           <% end %>
         </tbody>

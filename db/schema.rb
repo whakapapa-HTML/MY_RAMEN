@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_141917) do
     t.float "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "per_amount", null: false
   end
 
   create_table "procedures", force: :cascade do |t|
