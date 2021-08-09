@@ -17,9 +17,9 @@
 //= require jquery_ujs
 //= require data-confirm-modal
 //= require activestorage
-
-//= require_tree .
 //= require cocoon
+//= require_tree .
+
 
 /*global $*/
 
