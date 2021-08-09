@@ -39,8 +39,9 @@ $(function() {
     });
  });
 
- document.addEventListener("turbolinks:load", function () { //turbolinks:loadによって、リロードを解決
-  $(function() {
+// document.addEventListener("turbolinks:load", function () { //turbolinks:loadによって、リロードを解決
+
+  $(document).ready(function(){
     let tabs = $(".tab"); // tabのクラスを全て取得し、変数tabsに配列で定義
     $(".tab").on("click", function() { // tabをクリックしたらイベント発火
       $(".active").removeClass("active"); // activeクラスを消す
@@ -49,4 +50,3 @@ $(function() {
       $(".content").removeClass("show").eq(index).addClass("show"); // showクラスを消して、contentクラスのindex番目にshowクラスを追加
     });
   });
-})
