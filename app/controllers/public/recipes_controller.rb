@@ -42,13 +42,12 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
-
     # 人数分あたりの分量を算出する
     @recipe.ingredients.each do |ingredient|
       ingredient.amount = params[:recipe][:serving].to_f * ingredient.per_amount
       ingredient.save
     end
+    @recipe.update(recipe_params)
     redirect_to recipe_path(@recipe.id)
   end
 
