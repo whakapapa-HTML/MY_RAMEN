@@ -9,9 +9,9 @@
     <h5><%= @recipe.introduction %></h5><small class="text-muted mr-1">By</small><%= @recipe.user.name %><small class="text-muted"> | 作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
     <% if @recipe.user == current_user %>
     <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
-        { confirm: "#{ @recipe.name }をあなたのレシピから削除しますか？",
-          cancel: 'キャンセル',
-          commit: '削除'}, title: '削除の確認'  %>
+      { confirm: "#{ @recipe.name }をあなたのレシピから削除しますか？",
+        cancel: 'キャンセル',
+        commit: '削除'}, title: '削除の確認'  %>
     <% end %>
   </div>
   <div class="col-5 mt-5">
