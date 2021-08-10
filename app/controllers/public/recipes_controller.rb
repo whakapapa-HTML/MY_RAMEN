@@ -8,6 +8,12 @@ class Public::RecipesController < ApplicationController
   end
 
   def index
+    @recipes = Recipe.all.order(created_at: :desc)
+  end
+
+  def genre
+    @genre = Genre.find(params[:id])
+    @recipes = Recipe.where(genre_id: @genre.id)
   end
 
   def show
