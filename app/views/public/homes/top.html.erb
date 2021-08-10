@@ -2,7 +2,7 @@
   <div class="row">
     <% @genres.each do |genre| %>
     <div class="col-6">
-      <%= link_to image_tag(genre.genre_image.url, :size => '320x220'), recipes_path %>
+      <%= link_to image_tag(genre.genre_image.url, :size => '320x220'), recipe_genres_recipe_path(genre.id) %>
       <%= genre.name %>
     </div>
     <% end %>
