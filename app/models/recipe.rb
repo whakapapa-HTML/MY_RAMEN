@@ -19,4 +19,8 @@ class Recipe < ApplicationRecord
     validates :ingredients
   end
 
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
+  end
+
 end
