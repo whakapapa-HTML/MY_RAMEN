@@ -13,9 +13,16 @@
 
   <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
-    　<main class="mb-auto">
-        <%= yield %>
-    　</main>
+      <div class="row">
+        <div class="col-2">
+          <%= render 'layouts/sidebar' %>
+        </div>
+        <div class="col">
+          <main class="mb-auto">
+            <%= yield %>
+        　</main>
+        </div>
+      </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

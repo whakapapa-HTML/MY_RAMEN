@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
-    resources :bookmarks, only: [:create, :destroy]
     resources :recipes do
+      resources :bookmarks, only: [:create, :destroy]
       member do
          get 'recipe/genres', to: 'recipes#genre'
       end

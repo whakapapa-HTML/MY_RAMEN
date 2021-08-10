@@ -1,17 +1,31 @@
-<div class="container d-flex">
-  <div class="col-6">
-    <h1><%= @recipe.name %></h1>
-    <h4><%= @recipe.introduction %></h4><small class="text-muted mr-1">By</small><%= @recipe.user.name %><small class="text-muted"> | 作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
+<div class="container d-flex flex-wrap">
+  <div class="col-5 mt-5">
+    <h2><%= @recipe.name %></h2>
+      <div id="recipe_<%= @recipe.id %>">
+        <div class="bookmark_btn">
+          <%= render 'public/bookmarks/bookmark', recipe: @recipe %>
+        </div>
+      </div>
+    <h5><%= @recipe.introduction %></h5><small class="text-muted mr-1">By</small><%= @recipe.user.name %><small class="text-muted"> | 作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
     <% if @recipe.user == current_user %>
     <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
         { confirm: "#{ @recipe.name }をあなたのレシピから削除しますか？",
           cancel: 'キャンセル',
           commit: '削除'}, title: '削除の確認'  %>
     <% end %>
+  </div>
+  <div class="col-5 mt-5">
+    <% if @recipe.recipe_image.url.blank? %>
+      <%= image_tag("m_e_others_500.png", size: '560x373') %>
+    <% else %>
+      <%= image_tag(@recipe.recipe_image.url, size: '560x373') %>
+    <% end %>
+  </div>
+  <div class="col-12">
     <div class="border rounded p-4 mt-5">
       <div class="d-flex">
         <h4 class="mr-3"><%= @recipe.serving %>人分</h4>
-        <%= form_with model: @recipe, url: recipe_path, method: :patch, remote: true do |f| %>
+        <%= form_with model: @recipe, url: recipe_path, method: :patch, local: true do |f| %>
           <%= f.select :serving, options_for_select(1..30) %>
           <% @recipe.ingredients.each do |ingredient| %>
             <%= f.hidden_field :per_amount, :value => ingredient.per_amount %>
@@ -20,7 +34,7 @@
           <%= f.submit "変換する" %>
         <% end %>
       </div>
-      <table class="table">
+      <table class="table small">
         <thead>
           <tr>
             <th scope="col"></th>
@@ -38,40 +52,34 @@
           <% end %>
         </tbody>
       </table>
+     </div>
+    </div>
+    <div class="col-12 d-flex mt-5 border-top">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 10%"></th>
+            <th scope="col" style="width: 40%"></th>
+            <th scope="col" style="width: 50%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipe.procedures.each_with_index do |procedure, i| %>
+          <tr>
+            <th scope="row"><%= i + 1 %>.</th>
+            <td><%= procedure.explanation %></td>
+            <% if procedure.procedure_image.url.blank? %>
+            <td><%= image_tag "m_e_others_500.png", :size => '270x180' %></td>
+            <% else %>
+            <td><%= image_tag procedure.procedure_image.url, :size => '270x180' %></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
-  <div class="col-6 mt-5">
-    <% if @recipe.recipe_image.url.blank? %>
-      <%= image_tag "m_e_others_500.png" %>
-    <% else %>
-      <%= image_tag @recipe.recipe_image.url %>
-    <% end %>
-  </div>
-</div>
 
-<div class="container d-flex mt-5 border-top">
-  <div class="col-8 m-auto">
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recipe.procedures.each_with_index do |procedure, i| %>
-        <tr>
-          <th scope="row"><%= i + 1 %>.</th>
-          <td class="w-75"><%= procedure.explanation %></td>
-          <% if procedure.procedure_image.url.blank? %>
-          <td><%= image_tag "m_e_others_500.png", :size => '270x180' %></td>
-          <% else %>
-          <td class="w-25"><%= image_tag procedure.procedure_image.url, :size => '270x180' %></td>
-          <% end %>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+
+
+

@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_08_05_141917) do
     t.integer "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_bookmarks_on_recipe_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
