@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_012310) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "body", null: false
+    t.float "evaluation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
