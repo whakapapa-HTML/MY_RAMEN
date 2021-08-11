@@ -44,7 +44,9 @@
       </div>
     </div>
     <div class="content">
-      タブ３の中身です
+      <% @users.each do |user| %>
+        <%= user.name %>
+      <% end %>
     </div>
     <div class="content">
       タブ４の中身です

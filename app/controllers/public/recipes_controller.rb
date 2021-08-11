@@ -19,6 +19,7 @@ class Public::RecipesController < ApplicationController
   def show
     @review = Review.new
     @recipe = Recipe.find(params[:id])
+    @user = @recipe.user
   end
 
   def create

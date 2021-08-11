@@ -9,13 +9,14 @@
           cancel: 'キャンセル',
           commit: '削除'}, title: '削除の確認'  %>
     <% end %></br>
-    <div class="mt-5" id="recipe_<%= @recipe.id %>">
+    <div class="mt-5">
       <strong>投稿者をフォロー</strong>
-      <%= @recipe.user.name %>
+      <%= @user.name %>
       <div class="relationship_btn">
-        <%= render 'public/relationships/relationship', recipe: @recipe %>
+        <%= render 'public/relationships/relationship', user: @user %>
       </div>
-
+    </div>
+    <div class="mt-5" id="recipe_<%= @recipe.id %>">
       <strong>ブックマーク</strong>
         <div class="bookmark_btn">
           <%= render 'public/bookmarks/bookmark', recipe: @recipe %>
