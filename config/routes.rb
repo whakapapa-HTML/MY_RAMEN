@@ -28,13 +28,17 @@ Rails.application.routes.draw do
     get 'about', to: 'homes#about'
     resources :recipes do
       resources :bookmarks, only: [:create, :destroy]
+      resources :reviews, only: [:create, :destroy]
       member do
          get 'recipe/genres', to: 'recipes#genre'
       end
     end
     resources :procedures, only: [:new, :create]
-    resources :reviews, except: [:show, :edit, :update]
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      resources :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     get 'user/cancel', to: 'users#cancel'
     get 'user/unsubscribe', to: 'users#unsubscribe'
     get 'recipes', to: 'searches#index'

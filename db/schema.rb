@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_141917) do
+ActiveRecord::Schema.define(version: 2021_08_11_012310) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -68,11 +68,17 @@ ActiveRecord::Schema.define(version: 2021_08_05_141917) do
     t.string "recipe_image"
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "recipe_id", null: false
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "body", null: false
+    t.float "evaluation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

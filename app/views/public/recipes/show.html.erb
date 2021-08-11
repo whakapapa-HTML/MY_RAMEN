@@ -1,18 +1,26 @@
 <div class="container d-flex flex-wrap">
   <div class="col-5 mt-5">
-    <h2><%= @recipe.name %></h2>
-      <div id="recipe_<%= @recipe.id %>">
+    <h3><%= @recipe.name %></h3>
+    <h6><%= @recipe.introduction %></h6>
+    <small class="text-muted">作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
+    <% if @recipe.user == current_user %>
+      <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
+        { confirm: "#{ @recipe.name }をあなたのレシピから削除しますか？",
+          cancel: 'キャンセル',
+          commit: '削除'}, title: '削除の確認'  %>
+    <% end %></br>
+    <div class="mt-5" id="recipe_<%= @recipe.id %>">
+      <strong>投稿者をフォロー</strong>
+      <%= @recipe.user.name %>
+      <div class="relationship_btn">
+        <%= render 'public/relationships/relationship', recipe: @recipe %>
+      </div>
+
+      <strong>ブックマーク</strong>
         <div class="bookmark_btn">
           <%= render 'public/bookmarks/bookmark', recipe: @recipe %>
         </div>
-      </div>
-    <h5><%= @recipe.introduction %></h5><small class="text-muted mr-1">By</small><%= @recipe.user.name %><small class="text-muted"> | 作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
-    <% if @recipe.user == current_user %>
-    <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
-      { confirm: "#{ @recipe.name }をあなたのレシピから削除しますか？",
-        cancel: 'キャンセル',
-        commit: '削除'}, title: '削除の確認'  %>
-    <% end %>
+    </div>
   </div>
   <div class="col-5 mt-5">
     <% if @recipe.recipe_image.url.blank? %>
@@ -21,10 +29,10 @@
       <%= image_tag(@recipe.recipe_image.url, size: '560x373') %>
     <% end %>
   </div>
-  <div class="col-12">
-    <div class="border rounded p-4 mt-5">
+  <div class="col-10 m-auto">
+    <div class="border rounded p-4 mt-5 mb-5">
       <div class="d-flex">
-        <h4 class="mr-3"><%= @recipe.serving %>人分</h4>
+        <h5 class="mr-3"><%= @recipe.serving %>人分の分量</h5>
         <%= form_with model: @recipe, url: recipe_path, method: :patch, local: true do |f| %>
           <%= f.select :serving, options_for_select(1..30) %>
           <% @recipe.ingredients.each do |ingredient| %>
@@ -54,7 +62,7 @@
       </table>
      </div>
     </div>
-    <div class="col-12 d-flex mt-5 border-top">
+    <div class="col-10 d-flex m-auto border-top">
       <table class="table table-borderless">
         <thead>
           <tr>
@@ -78,8 +86,41 @@
         </tbody>
       </table>
     </div>
+    <div class="col-6 m-auto pt-5">
+      <%= render partial: 'layouts/flash' %>
+      <% if current_user %>
+        <% if @recipe.reviews.where(user_id: current_user.id).blank? %>
+          <strong>レビューを書く</strong>
+          <%= form_with(model:[@recipe, @review], url: recipe_reviews_path(recipe_id: @recipe.id), method: :post, local: true) do |f| %>
+            <div class="form-group">
+              <%= f.label :title %>
+              <%= f.text_field :title, class: "mt-2 form-control" %></br>
+            </div>
+            <div class="form-group">
+              <%= f.label :body %>
+              <%= f.text_area :body, class: "mt-2 form-control" %></br>
+            </div>
+            <div class="form-group" id="star">
+              <% f.label :evaluation %>
+              <%= f.hidden_field :evaluation, id: :review_star, class:'form-control' %>
+            </div>
+            <%= f.submit "送信する", class:"btn btn-success mt-3" %>
+          <% end %>
+        <% else %>
+          <strong class="m-5">レビューをいただきありがとうございました！</strong>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-
-
+<script>
+  $('#star').raty({
+    size     : 24,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'review[evaluation]',
+    half: false,
+  });
+</script>
 
