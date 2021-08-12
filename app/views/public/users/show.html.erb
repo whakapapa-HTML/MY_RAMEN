@@ -44,12 +44,60 @@
       </div>
     </div>
     <div class="content">
-      <% @users.each do |user| %>
-        <%= user.name %>
-      <% end %>
+      <table class="table small table-hover">
+        <thead>
+          <tr>
+            <th style="width: 20%">フォロー</th>
+            <th style="width: 40%">紹介</th>
+            <th style="width: 40%">投稿したラーメン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @followings.each do |following| %>
+            <tr>
+              <td><%= following.name %></td>
+              <td><%= following.introduction %></td>
+              <td>
+                <% following.recipes.each do |recipe| %>
+                <div class="flex-column">
+                  <%= link_to recipe_path(recipe.id) do %>
+                    <%= recipe.name %>
+                  <% end %>
+                </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="content">
-      タブ４の中身です
+      <table class="table small table-hover">
+        <thead>
+          <tr>
+            <th style="width: 20%">フォロワー</th>
+            <th style="width: 40%">紹介</th>
+            <th style="width: 40%">投稿したラーメン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @followers.each do |follower| %>
+            <tr>
+              <td><%= follower.name %></td>
+              <td><%= follower.introduction %></td>
+              <td>
+                <% follower.recipes.each do |recipe| %>
+                <div class="flex-column">
+                  <%= link_to recipe_path(recipe.id) do %>
+                    <%= recipe.name %>
+                  <% end %>
+                </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
     <div class="content">
       <div class="col-10 m-auto">

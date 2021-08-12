@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_012310) do
+ActiveRecord::Schema.define(version: 2021_08_12_143118) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_012310) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "genre_image"
+    t.string "genre_image", null: false
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_012310) do
     t.integer "serving", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "recipe_image"
+    t.string "recipe_image", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
