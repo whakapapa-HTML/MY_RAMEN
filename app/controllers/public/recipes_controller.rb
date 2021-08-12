@@ -19,7 +19,6 @@ class Public::RecipesController < ApplicationController
   def show
     @review = Review.new
     @recipe = Recipe.find(params[:id])
-    @user = @recipe.user
     @reviews = @recipe.reviews.all
     @rate_avg = @reviews.average(:evaluation).to_i
     # 星の表示
