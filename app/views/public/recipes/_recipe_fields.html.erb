@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <%= f.label :レシピ概要 %>
-    <%= f.text_field :introduction, class: "form-control" %>
+    <%= f.text_area :introduction, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -26,7 +26,7 @@
     <%= f.label :完成画像 %>
     <%= f.file_field :recipe_image, class: "form-control-file" %>
     <%= f.hidden_field :recipe_image_cache %>
-    <%= image_tag(@recipe.recipe_image.url, size: '560x373') if @recipe.recipe_image? %>
+    <%= image_tag(recipe.recipe_image.url, size: '560x373') if recipe.recipe_image? %>
   </div>
 　　　<!-- ingredients追加フォーム -->
 

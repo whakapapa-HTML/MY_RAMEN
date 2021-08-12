@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'about', to: 'homes#about'
     resources :recipes do
       resources :bookmarks, only: [:create, :destroy]
-      resources :reviews, only: [:create, :destroy]
+      resources :reviews, only: [:create, :destroy, :index, :show]
       member do
          get 'recipe/genres', to: 'recipes#genre'
       end
