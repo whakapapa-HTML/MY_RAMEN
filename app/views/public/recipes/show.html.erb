@@ -16,9 +16,9 @@
               starOff:  '<%= asset_path('star-off.png') %>',
               starOn : '<%= asset_path('star-on.png') %>',
               starHalf: '<%= asset_path('star-half.png') %>',
-              half: true,
               readOnly: true,
-              score: <%= @rate_avg %>
+              score: <%= @rate_avg %>,
+              half: true
             });
           </script>
     　   <% end %>
@@ -149,7 +149,7 @@
     starOn : '<%= asset_path('star-on.png') %>',
     starHalf: '<%= asset_path('star-half.png') %>',
     scoreName: 'review[evaluation]',
-    half: false,
+    half: true,
   });
 </script>
 
