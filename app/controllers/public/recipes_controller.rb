@@ -52,12 +52,15 @@ class Public::RecipesController < ApplicationController
     # 人数分あたりの分量を算出する
     @recipe.ingredients.each do |ingredient|
       ingredient.amount = params[:recipe][:serving].to_f * ingredient.per_amount
+      ingredient.per_amount = ingredient.amount.to_f / params[:recipe][:serving].to_f
       ingredient.save
-
     end
 
-    @recipe.update(recipe_params)
-    redirect_to recipe_path(@recipe.id)
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
