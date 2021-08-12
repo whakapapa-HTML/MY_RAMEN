@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  include ActiveModel::Dirty
 
   has_many	:reviews,	    dependent: :destroy
   has_many	:bookmarks,	  dependent: :destroy

@@ -20,6 +20,12 @@ class Public::RecipesController < ApplicationController
     @review = Review.new
     @recipe = Recipe.find(params[:id])
     @user = @recipe.user
+    @reviews = @recipe.reviews.all
+    @rate_avg = @reviews.average(:evaluation).to_i
+    # 星の表示
+    if current_user
+      @reviews = @recipe.reviews.find_by(user_id: current_user.id)
+    end
   end
 
   def create
@@ -47,7 +53,9 @@ class Public::RecipesController < ApplicationController
     @recipe.ingredients.each do |ingredient|
       ingredient.amount = params[:recipe][:serving].to_f * ingredient.per_amount
       ingredient.save
+
     end
+
     @recipe.update(recipe_params)
     redirect_to recipe_path(@recipe.id)
   end
