@@ -1,7 +1,7 @@
 
 5.times do |n|
 Recipe.create!([
-  {user_id: 1, genre_id: 1, name: "おいしいらーめん", introduction: "美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！", serving: 4, recipe_image: open("#{Rails.root}/db/fixtures/DSCF9743.JPG"),
+  {user_id: 1, genre_id: 1, name: "おいしいらーめん", introduction: "美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！", serving: 4, recipe_image: open("#{Rails.root}/public/uploads/tmp/1628219989-341424121907204-0025-1247/DSCF9743-removebg-preview.png"),
   ingredients_attributes:[
     { recipe_id: 1, name: "煮干し", amount: 300, per_amount: 75},
     { recipe_id: 1, name: "椎茸", amount: 100, per_amount: 25},
