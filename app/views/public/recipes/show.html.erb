@@ -2,7 +2,7 @@
   <div class="col-6 mt-5">
     <%= render partial: 'layouts/flash' %>
     <div class="d-flex flex-wrap">
-      <h3><%= @recipe.name %></h3>
+      <h3><strong><%= @recipe.name %></strong></h3>
         <span class="ml-2 mt-1" id="rate_avg"></span>
         <%= link_to recipe_reviews_path(@recipe), class: "ml-2 mt-2" do %>
           <p>(<%= @recipe.reviews.count %>)</p>

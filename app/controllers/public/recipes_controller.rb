@@ -1,5 +1,5 @@
 class Public::RecipesController < ApplicationController
-
+  before_action :authenticate, except: [:genre]
 
   def new
     @recipe = Recipe.new
