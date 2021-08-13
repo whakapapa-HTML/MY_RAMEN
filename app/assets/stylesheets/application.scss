@@ -20,6 +20,8 @@
 
 
 
+
+
 // タブ切り替え
 
 .tab-area {
@@ -61,4 +63,45 @@
 .sidebar_fixed {
   position: fixed;
   top: 60px;
+}
+
+
+// 検索ボックス
+
+// 検索フォームアイコン
+.search-field,
+.search-admin-field{
+position: relative;
+}
+
+.search-admin-field{
+position: relative;
+}
+
+.search-icon{
+position: absolute;
+left: 80%;
+top: 0%;
+}
+
+.search-admin-icon{
+position: absolute;
+left: 78%;
+top: 38%;
+}
+
+
+
+// メダルの色
+
+.gold {
+  color: #FFD700;
+}
+
+.silver {
+  color: #A9A9A9;
+}
+
+.blonze {
+  color: #996600;
 }

@@ -20,6 +20,14 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+          <li>
+            <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-field") do |f| %>
+              <%= f.text_field :keyword, placeholder: "レシピを検索する", class: "form-control" %>
+              <%= button_tag type: 'submit', class: 'btn search-icon' do %>
+                <i class="fas fa-search"></i>
+              <% end %>
+            <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
           </li>
@@ -50,7 +58,7 @@
             <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav-item">
-            <%= link_to "検索", user_searches_path, class: 'nav-link text-dark' %>
+            <%= link_to "検索", admin_admin_searches_path, class: 'nav-link text-dark' %>
           </li>
           <li class="nav_item">
             <%= select_tag 'name', options_for_select({新着順: 1, 人気順: 2}, 1), include_blank: true, class: 'nav-link text-dark' %>

@@ -1,5 +1,5 @@
 class Public::RecipesController < ApplicationController
-  before_action :authenticate, except: [:genre]
+  before_action :authenticate, except: [:genre, :search]
 
   def new
     @recipe = Recipe.new
@@ -65,6 +65,19 @@ class Public::RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find_by(params[:recipe_id]).destroy
     redirect_to user_path(current_user)
+  end
+
+  def search
+    @genres = Genre.all
+    @recipes = Recipe.search(params[:keyword])
+  end
+
+  def ranking
+    @genres = Genre.all
+    # 内部結合(合致しないレコードは排除)joinsによってクエリの消費を抑える
+    # groupメソッドによって、ブックマークに紐づいたrecipe_idをまとめている
+    # orderメソッドによって、レコードの多い順(降順)に並び替える
+    @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order("count(bookmarks.recipe_id) DESC")
   end
 
   private

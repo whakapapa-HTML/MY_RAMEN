@@ -1,21 +1,11 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-2 d-flex flex-column m-5">
-      <ul>
-        <% @genres.each do |genre| %>
-          <li class="active mb-5">
-            <%= link_to recipe_genres_recipe_path(genre.id) do %>
-              <%= genre.name %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render 'layouts/sidebar', genres: @genres %>
     <div class="col">
       <div class="row">
         <% @genres.each do |genre| %>
-        <div class="col-5 d-flex flex-column mb-4">
+        <div class="col-5 d-flex flex-column mt-5 mb-5">
           <%= link_to image_tag(genre.genre_image.url, class: "d-block mx-auto", :size => '320x220'), recipe_genres_recipe_path(genre.id) %>
           <strong class="text-center"><%= genre.name %></strong>
         </div>

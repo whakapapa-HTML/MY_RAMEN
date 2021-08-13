@@ -24,4 +24,9 @@ class Recipe < ApplicationRecord
     bookmarks.where(user_id: user).exists?
   end
 
+  def self.search(search)
+    return Recipe.all unless search
+    Recipe.where('name LIKE(?)',"%#{search}%")
+  end
+
 end

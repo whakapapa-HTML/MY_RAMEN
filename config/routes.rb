@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   devise_for :admins,controllers: {
@@ -27,6 +28,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
     resources :recipes do
+      collection do
+        get 'search'
+        get 'ranking'
+      end
       resources :bookmarks, only: [:create, :destroy]
       resources :reviews, only: [:create, :destroy, :index, :show]
       member do
@@ -40,8 +45,6 @@ Rails.application.routes.draw do
     get 'user/cancel', to: 'users#cancel'
     get 'user/unsubscribe', to: 'users#unsubscribe'
     get 'recipes', to: 'searches#index'
-    get 'user/searches', to: 'searches#search'
-    get 'rankings', to: 'rankings#index'
   end
 
 end
