@@ -31,6 +31,8 @@ Rails.application.routes.draw do
       collection do
         get 'search'
         get 'ranking'
+        get 'pv_ranking'
+        get 'genre_ranking'
       end
       resources :bookmarks, only: [:create, :destroy]
       resources :reviews, only: [:create, :destroy, :index, :show]
