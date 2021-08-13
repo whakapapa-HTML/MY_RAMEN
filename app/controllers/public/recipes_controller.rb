@@ -1,5 +1,6 @@
 class Public::RecipesController < ApplicationController
   before_action :authenticate, except: [:genre, :search]
+  impressionist :actions=> [:show], :unique => [:impressionable_id, :ip_address]
 
   def new
     @recipe = Recipe.new
@@ -12,13 +13,16 @@ class Public::RecipesController < ApplicationController
   end
 
   def genre
+    @genres = Genre.all
     @genre = Genre.find(params[:id])
     @recipes = Recipe.where(genre_id: @genre.id)
   end
 
   def show
+    # 同じ人がアクセス（同じブラウザからアクセス）した複数回、同じ記事をみた場合は1PVと数える
     @review = Review.new
     @recipe = Recipe.find(params[:id])
+    @views = @recipe.impressions.size
     @reviews = @recipe.reviews.all
     @rate_avg = @reviews.average(:evaluation).to_i
     # 星の表示
@@ -77,7 +81,20 @@ class Public::RecipesController < ApplicationController
     # 内部結合(合致しないレコードは排除)joinsによってクエリの消費を抑える
     # groupメソッドによって、ブックマークに紐づいたrecipe_idをまとめている
     # orderメソッドによって、レコードの多い順(降順)に並び替える
-    @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order("count(bookmarks.recipe_id) DESC")
+    @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order('count(bookmarks.recipe_id) desc')
+  end
+
+  def pv_ranking
+    @genres = Genre.all
+    # モデル名.all.map(&:カラム名)に同じ　配列で返す
+    @pv_ranks = Recipe.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(10).pluck(:impressionable_id))
+  end
+
+  def genre_ranking
+    @genres = Genre.all
+    @genre = Genre.find(params[:genre_id])
+    @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order('count(bookmarks.recipe_id) desc')
+    @genre_ranks = @all_ranks.select{ |genre| genre.genre_id == @genre.id }
   end
 
   private

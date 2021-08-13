@@ -20,6 +20,9 @@ class Recipe < ApplicationRecord
     validates :ingredients
   end
 
+  # 閲覧数を計測可能にする
+  is_impressionable counter_cache: true
+
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end

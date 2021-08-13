@@ -20,6 +20,16 @@
 
 
 
+// フォント指定
+
+ * {
+   font-family: 'Noto Serif JP', serif;;
+ }
+
+ li ul {
+   text-decoration: none;
+   list-style: none;
+ }
 
 
 // タブ切り替え
@@ -105,3 +115,19 @@ top: 38%;
 .blonze {
   color: #996600;
 }
+
+
+// ジャンル画像のアクション
+
+.hover-parent img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .6s ease-in-out;
+  transition: .6s ease-in-out;
+}
+.hover-parent:hover img {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+
