@@ -1,2 +1,11 @@
-<h1>Admin::Searches#search</h1>
-<p>Find me in app/views/admin/searches/search.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% if @model == 'user' %>
+      <h3>【Usersモデルの検索結果】検索ワード：<%= @content %></h3>
+      <%= render 'users/index', users: @records %>
+    <% else @model == 'posts' %>
+      <h3>【Postsモデルの検索結果】検索ワード：<%= @content %></h3>
+        <%= render 'posts/index', posts: @records %>
+    <% end %>
+  </div>
+</div>
