@@ -7,7 +7,7 @@
             <tr>
               <th>会員名</th>
               <th>イントロダクション</th>
-              <th></th>
+              <th>ステータス</th>
               <th></th>
             </tr>
         </thead>
@@ -16,11 +16,11 @@
           <tr>
             <td><%= user.name %></td>
             <td><%= user.introduction %></td>
-            <% if user.is_deleted == false %>
-                <td class="text-success">有効</td>
-              <% else %>
-                <td class="text-secondary">退会</td>
-              <% end %>
+            <% if user.is_deleted %>
+              <td class="text-secondary">退会済み</td>
+            <% else %>
+               <td class="text-success">有効</td>
+            <% end %>
             <td><%= link_to "詳細", admin_user_path(user) %></td>
           </tr>
         <% end %>
