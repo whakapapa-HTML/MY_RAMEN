@@ -1,34 +1,25 @@
 <div class="container">
+  <h2 class="m-5">レシピ一覧</h2>
   <div class="row">
-    <h2>レシピ一覧</h2>
-    <table class="table small m-5 table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">レシピ名</th>
-          <th scope="col">投稿者名</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="col-10 m-auto m-4">
+      <table class="table small table-hover m-4">
+        <thead>
+            <tr>
+              <th>レシピ名</th>
+              <th>レシピ概要</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody id="post">
+        <% @recipes.each do |recipe| %>
+          <tr>
+            <td><%= recipe.name %></td>
+            <td><%= recipe.introduction %></td>
+            <td><%= link_to "レシピ詳細", admin_recipe_path(recipe) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

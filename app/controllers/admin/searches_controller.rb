@@ -5,14 +5,15 @@ class Admin::SearchesController < ApplicationController
     @content = params["content"]
     @records = search_for(@model, @content)
   end
+  
 
   private
 
     def search_for(model, content)
       if model == 'user'
-        User.where('name LIKE(?)',"%#{search}%")
+        User.where('name LIKE(?)',"%#{content}%")
       elsif model == 'recipe'
-        Recipe.where('name LIKE(?)',"%#{search}%")
+        Recipe.where('name LIKE(?)',"%#{content}%")
       end
     end
 

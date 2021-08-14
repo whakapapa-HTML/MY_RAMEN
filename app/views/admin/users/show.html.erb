@@ -1,2 +1,41 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container">
+  <h2 class="m-5">会員詳細</h2>
+  <div class="row">
+    <div class="col-10 m-auto m-4">
+      <table class="table small table-hover">
+        <thead>
+          <tr>
+            <th scope="col">会員名</th>
+            <th scope="col">イントロダクション</th>
+            <th scope="col">投稿したレシピ</th>
+            <th scope="col">退会ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><%= @user.name %></th>
+            <td><%= @user.introduction %></td>
+            <td>
+              <% @user.recipes.each do |recipe| %>
+                <div class="flex-column">
+                  <%= link_to admin_recipe_path(recipe.id) do %>
+                    <%= recipe.name %>
+                  <% end %>
+                </div>
+              <% end %>
+            </td>
+            <td class="f-flex">
+              <%= form_with (url: withdrawl_admin_user_path(@user.id), local: true, method: :patch) do |f| %>
+                 <%= f.radio_button :is_deleted, :false, include_hidden: false %>
+                 <%= f.label :"有効", class: "control-label mr-2" %>
+                 <%= f.radio_button :is_deleted, :true, include_hidden: true %>
+                 <%= f.label :"退会", class: "control-label mr-2" %>
+                <%= f.submit '変更' %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
