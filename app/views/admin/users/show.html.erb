@@ -25,11 +25,11 @@
               <% end %>
             </td>
             <td class="f-flex">
-              <%= form_with (url: withdrawl_admin_user_path(@user.id), local: true, method: :patch) do |f| %>
-                 <%= f.radio_button :is_deleted, :false, include_hidden: false %>
+              <%= form_with(url: withdrawl_admin_user_path(@user.id), local: true, method: :patch) do |f| %>
+                 <%= f.radio_button :is_deleted, false, include_hidden: false %>
                  <%= f.label :"有効", class: "control-label mr-2" %>
-                 <%= f.radio_button :is_deleted, :true, include_hidden: true %>
-                 <%= f.label :"退会", class: "control-label mr-2" %>
+                 <%= f.radio_button :is_deleted, true, include_hidden: true %>
+                 <%= f.label :"退会済み", class: "control-label mr-2" %>
                 <%= f.submit '変更' %>
               <% end %>
             </td>
