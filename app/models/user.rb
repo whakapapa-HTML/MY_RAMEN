@@ -20,6 +20,20 @@ class User < ApplicationRecord
 
   validates :introduction, length: { maximum: 150 }
 
+
+   # 退会ステータスのenum
+   # is_deletedがfalseの場合は有効
+  enum is_deleted: {"退会済み": true, "有効": false}
+
+  # superで渡された引数を親クラスに受け渡しできる
+  def active_for_authentication?
+        super && (self.is_deleted === false)
+  end
+
+
+
+   # フォロー機能のメソッド
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

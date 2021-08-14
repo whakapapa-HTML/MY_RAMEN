@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Public::Users::SessionsController < Devise::SessionsController
+  before_action :active_for_authentication?, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

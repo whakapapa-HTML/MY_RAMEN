@@ -19,9 +19,15 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'admin/recipes', to: 'searches#index'
     get 'admin/searches', to: 'searches#search'
-    resources :users, except: [:create, :new, :destroy]
+    resources :users, except: [:create, :new, :destroy] do
+      member do
+        patch 'withdrawl'
+      end
+    end
     resources :genres
-    resources :recipes, only: [:index, :show, :destroy]
+    resources :recipes, only: [:index, :show, :destroy] do
+      resources :reviews, only: [:index, :destroy]
+    end
   end
 
   scope module: :public do

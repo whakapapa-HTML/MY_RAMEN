@@ -41,7 +41,7 @@
           <li class="nav-item mr-3">
             <%= form_with(url: admin_admin_searches_path, local: true, method: :get, class: "search-field d-flex") do |f| %>
               <%= f.select :model, options_for_select({"会員" => "user", "レシピ" => "recipe"}) %>
-                <%= f.text_field :content, placeholder: "レシピを検索する", class: "form-control" %>
+                <%= f.text_field :content, placeholder: "検索", class: "form-control" %>
                 <%= button_tag type: 'submit', class: 'btn search-icon' do %>
                   <i class="fas fa-search"></i>
                 <% end %>
