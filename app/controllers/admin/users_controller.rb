@@ -1,4 +1,7 @@
 class Admin::UsersController < ApplicationController
+
+  before_action :authenticate_admin!
+
   def index
     @users = User.all
   end
@@ -7,9 +10,23 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update!(user_params)
+      redirect_to admin_users_path
+    else
+      render "edit"
+    end
+  end
+
   def withdrawl
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.update(is_deleted: true)
+      reset_session     #データをリセットする
       flash[:notice] = "ユーザーを退会させました"
       redirect_to admin_users_path
     else
@@ -20,7 +37,7 @@ class Admin::UsersController < ApplicationController
   private
 
     def user_params
-      params.permit(:is_deleted)
+      params.require(:user).permit(:is_deleted)
     end
 
 end

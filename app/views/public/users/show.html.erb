@@ -18,8 +18,21 @@
   </div>
   <div class="content-area">
     <div class="content show">
-      <%= @user.name %></br>
-      <%= @user.introduction %>
+     <table class="table small col-8 m-auto">
+        <tr>
+          <td>ユーザー名</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td>自己紹介</td>
+          <td><%= @user.introduction %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+      <div><%= link_to "編集する", edit_user_path, class: "btn btn-primary mt-5" %></div>
     </div>
     <div class="content">
       <div class="col-10 m-auto">

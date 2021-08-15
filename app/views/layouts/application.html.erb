@@ -17,6 +17,8 @@
   <body class="d-flex flex-column vh-100">
     <%= render 'layouts/header' %>
       <main class="mb-auto">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <%= yield %>
     　</main>
     <%= render 'layouts/footer' %>
