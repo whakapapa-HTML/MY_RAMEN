@@ -44,10 +44,12 @@ Rails.application.routes.draw do
     end
     resources :procedures, only: [:new, :create]
     resources :users, only: [:show, :edit, :update] do
+      member do
+        get 'user/cancel', to: 'users#cancel'
+        patch 'user/unsubscribe', to: 'users#unsubscribe'
+      end
       resource :relationships, only: [:create, :destroy]
     end
-    get 'user/cancel', to: 'users#cancel'
-    get 'user/unsubscribe', to: 'users#unsubscribe'
     get 'recipes', to: 'searches#index'
   end
 
