@@ -24,11 +24,22 @@ Rails.application.routes.draw do
     resources :recipes, only: [:index, :show, :destroy] do
       resources :reviews, only: [:index, :destroy]
     end
+    resources :contacts do
+      member do
+        patch 'status'
+      end
+    end
   end
 
   scope module: :public do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
+    resources :contacts, only: [:new, :create] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+      end
+    end
     resources :recipes do
       collection do
         get 'search'
