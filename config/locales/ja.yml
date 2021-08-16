@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+  errors:
+    messages:
+      record_invalid: "バリデーションに失敗しました: %{errors}"
+  models:
+    recipe: "レシピ"
+    ingredients: "材料"
+    procedures: "調理手順"
+  attributes:
+    recipe:
+      name: "レシピ名"
+      introduction: "レシピ概要"
+      serving: "人数"
+      recipe_image: "レシピ画像"
+    ingredients:
+      name: "材料名"
+      amount: "分量"
+    procedures:
+      explanation: "調理説明"
+      procedure_image: "調理画像"
+
