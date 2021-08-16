@@ -1,3 +1,6 @@
+
+<%= render 'layouts/error_message', obj: recipe %>
+
 <%= form_with model: recipe, id: 'new_recipe', class: 'new_recipe', local: true do |f| %>
 　<div class="form-group">
 　  　<%= f.hidden_field :user_id, value: current_user.id, class: "form-control" %>
