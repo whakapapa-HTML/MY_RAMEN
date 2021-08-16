@@ -18,7 +18,6 @@
 //= require jquery_ujs
 //= require data-confirm-modal
 //= require activestorage
-//= require jquery.raty.js
 //= require_tree .
 
 
