@@ -2,6 +2,8 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @recipe = Recipe.find(params[:recipe_id])
+    @reviews = @recipe.reviews.all
+    @rate_avg = @reviews.average(:evaluation).to_f
   end
 
   def create

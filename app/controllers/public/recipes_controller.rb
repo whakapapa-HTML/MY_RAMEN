@@ -24,7 +24,7 @@ class Public::RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @views = @recipe.impressions.size
     @reviews = @recipe.reviews.all
-    @rate_avg = @reviews.average(:evaluation).to_i
+    @rate_avg = @reviews.average(:evaluation).to_f
     # 星の表示
     if current_user
       @reviews = @recipe.reviews.find_by(user_id: current_user.id)
@@ -74,11 +74,12 @@ class Public::RecipesController < ApplicationController
   def search
     @genres = Genre.all
     @recipes = Recipe.search(params[:keyword])
+    @content = params[:keyword]
   end
 
   def ranking
     @genres = Genre.all
-    # 内部結合(合致しないレコードは排除)joinsによってクエリの消費を抑える
+    # 内部結合(合致しないレコードは排除)joinsによってレシピとブックマークを合体させる
     # groupメソッドによって、ブックマークに紐づいたrecipe_idをまとめている
     # orderメソッドによって、レコードの多い順(降順)に並び替える
     @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order('count(bookmarks.recipe_id) desc')
@@ -93,8 +94,7 @@ class Public::RecipesController < ApplicationController
   def genre_ranking
     @genres = Genre.all
     @genre = Genre.find(params[:genre_id])
-    @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order('count(bookmarks.recipe_id) desc')
-    @genre_ranks = @all_ranks.select{ |genre| genre.genre_id == @genre.id }
+    @genre_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('count(reviews.evaluation) desc')
   end
 
   private
