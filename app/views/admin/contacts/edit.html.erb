@@ -1,0 +1,33 @@
+<div class="container">
+  <h2 class="m-5">お問い合わせ内容</h2>
+  <div class="row">
+    <div class="col-10 m-auto">
+      <table class="table small table-hover">
+        <thead>
+          <tr>
+            <th>顧客名</th>
+            <th>問い合わせ日</th>
+            <th>タイトル</th>
+            <th>問い合わせ内容</th>
+            <th>返信</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= form_with model: @contact, url: admin_contact_path, local: true do |f| %>
+          <tr>
+            <td><%= @contact.user.name %>様</td>
+            <td><%= @contact.created_at.strftime("%Y年%m月%d日") %></td>
+            <td><%= @contact.title %></td>
+            <td><%= @contact.body %></td>
+            <td>
+              <%= f.text_area :reply, class:"form-control", placeholder: "返信内容" %>
+              <%= f.submit "送信" %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
