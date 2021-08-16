@@ -94,8 +94,11 @@ class Public::RecipesController < ApplicationController
   def genre_ranking
     @genres = Genre.all
     @genre = Genre.find(params[:genre_id])
-    @genre_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('count(reviews.evaluation) desc')
+    #　評価の高い順に並び替えている
+    @genre_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
+
   end
+
 
   private
 
