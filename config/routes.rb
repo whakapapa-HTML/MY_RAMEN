@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   devise_for :admins,controllers: {
@@ -20,26 +21,47 @@ Rails.application.routes.draw do
     get 'admin/searches', to: 'searches#search'
     resources :users, except: [:create, :new, :destroy]
     resources :genres
-    resources :recipes, only: [:index, :show, :destroy]
+    resources :recipes, only: [:index, :show, :destroy] do
+      resources :reviews, only: [:index, :destroy]
+    end
+    resources :contacts do
+      member do
+        patch 'status'
+      end
+    end
   end
 
   scope module: :public do
     root to: 'homes#top'
     get 'about', to: 'homes#about'
+    resources :contacts, only: [:new, :create] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+      end
+    end
     resources :recipes do
+      collection do
+        get 'search'
+        get 'ranking'
+        get 'pv_ranking'
+        get 'genre_ranking'
+      end
       resources :bookmarks, only: [:create, :destroy]
+      resources :reviews, only: [:create, :destroy, :index, :show]
       member do
          get 'recipe/genres', to: 'recipes#genre'
       end
     end
     resources :procedures, only: [:new, :create]
-    resources :reviews, except: [:show, :edit, :update]
-    resources :users, only: [:show, :edit, :update]
-    get 'user/cancel', to: 'users#cancel'
-    get 'user/unsubscribe', to: 'users#unsubscribe'
+    resources :users, only: [:show, :edit, :update] do
+      member do
+        get 'user/cancel', to: 'users#cancel'
+        patch 'user/unsubscribe', to: 'users#unsubscribe'
+      end
+      resource :relationships, only: [:create, :destroy]
+    end
     get 'recipes', to: 'searches#index'
-    get 'user/searches', to: 'searches#search'
-    get 'rankings', to: 'rankings#index'
   end
 
 end

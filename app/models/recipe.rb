@@ -1,4 +1,5 @@
 class Recipe < ApplicationRecord
+  include ActiveModel::Dirty
 
   has_many	:reviews,	    dependent: :destroy
   has_many	:bookmarks,	  dependent: :destroy
@@ -19,8 +20,16 @@ class Recipe < ApplicationRecord
     validates :ingredients
   end
 
+  # 閲覧数を計測可能にする
+  is_impressionable counter_cache: true
+
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
+  end
+
+  def self.search(search)
+    return Recipe.all unless search
+    Recipe.where('name LIKE(?)',"%#{search}%")
   end
 
 end

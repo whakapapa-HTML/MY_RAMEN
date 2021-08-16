@@ -1,2 +1,34 @@
-<h1>Public::Reviews#index</h1>
-<p>Find me in app/views/public/reviews/index.html.erb</p>
+<div class="container">
+  <h3 class="pt-5"><%= @recipe.name %>のレビュー: 平均 <%= @rate_avg %>点</h3>
+  <table class="table small table-hover mt-5">
+    <thead>
+      <tr>
+        <th style="width: 10%">投稿者名</th>
+        <th style="width: 20%">評価</th>
+        <th style="width: 20%">タイトル</th>
+        <th style="width: 50%">レビュー本文</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @recipe.reviews.each do |review| %>
+        <tr>
+          <td><%= review.user.name %></td>
+          <td id="rate_<%= review.id %>"></td>
+           <script>
+                $('#rate_<%= review.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= review.evaluation %>,
+                  half: true,
+                });
+              </script>
+          <td><%= review.title %></td>
+          <td><%= review.body %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

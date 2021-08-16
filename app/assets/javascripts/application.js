@@ -41,5 +41,6 @@
 
 
 
-// document.addEventListener("turbolinks:load", function () { //turbolinks:loadによって、リロードを解決
+
+document.addEventListener("touchstart", function(){}, true);
 

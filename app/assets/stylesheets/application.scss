@@ -19,6 +19,21 @@
  @import 'font-awesome';
 
 
+
+// フォント指定
+
+ * {
+   font-family: 'Noto Serif JP', serif;;
+ }
+
+ li ul {
+   text-decoration: none;
+   list-style: none;
+ }
+
+
+// タブ切り替え
+
 .tab-area {
   display: flex;
   justify-content: space-around;
@@ -54,3 +69,65 @@
 .fab-color {
   color: #CD5C5C;
 }
+
+.sidebar_fixed {
+  position: fixed;
+  top: 60px;
+}
+
+
+// 検索ボックス
+
+// 検索フォームアイコン
+.search-field,
+.search-admin-field{
+position: relative;
+}
+
+.search-admin-field{
+position: relative;
+}
+
+.search-icon{
+position: absolute;
+left: 80%;
+top: 0%;
+}
+
+.search-admin-icon{
+position: absolute;
+left: 78%;
+top: 38%;
+}
+
+
+
+// メダルの色
+
+.gold {
+  color: #FFD700;
+}
+
+.silver {
+  color: #A9A9A9;
+}
+
+.blonze {
+  color: #996600;
+}
+
+
+// ジャンル画像のアクション
+
+.hover-parent img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .6s ease-in-out;
+  transition: .6s ease-in-out;
+}
+.hover-parent:hover img {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+

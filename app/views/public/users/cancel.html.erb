@@ -1,2 +1,24 @@
-<h1>Public::Users#cancel</h1>
-<p>Find me in app/views/public/users/cancel.html.erb</p>
+<div class="container mb-4">
+  <div class="card col-6 m-auto">
+    <div class="card-body">
+      <h4>退会手続き</h4>
+      <div class="col-10 m-auto pb-3 text-center">
+        <%= form_with model: @user, url: user_unsubscribe_user_path(@user.id), method: :patch, local:true do |f| %>
+          <div>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効" %>
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会" %>
+          </div>
+          <div class="mt-4">
+            <%= f.submit:'退会の確認', class:'btn btn-sm btn-danger', data:
+            { confirm: "本当に退会しますか？",
+                cancel: 'キャンセル',
+                commit: '退会'}, title: '変更の確認' %>
+            <%= link_to "戻る", edit_user_path, class: 'btn btn-sm btn-secondary ml-4' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

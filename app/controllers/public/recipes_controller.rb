@@ -1,5 +1,6 @@
 class Public::RecipesController < ApplicationController
-
+  before_action :authenticate, except: [:genre, :search]
+  impressionist :actions=> [:show], :unique => [:impressionable_id, :ip_address]
 
   def new
     @recipe = Recipe.new
@@ -12,13 +13,22 @@ class Public::RecipesController < ApplicationController
   end
 
   def genre
+    @genres = Genre.all
     @genre = Genre.find(params[:id])
     @recipes = Recipe.where(genre_id: @genre.id)
   end
 
   def show
+    # 同じ人がアクセス（同じブラウザからアクセス）した複数回、同じ記事をみた場合は1PVと数える
+    @review = Review.new
     @recipe = Recipe.find(params[:id])
-
+    @views = @recipe.impressions.size
+    @reviews = @recipe.reviews.all
+    @rate_avg = @reviews.average(:evaluation).to_f
+    # 星の表示
+    if current_user
+      @reviews = @recipe.reviews.find_by(user_id: current_user.id)
+    end
   end
 
   def create
@@ -45,15 +55,46 @@ class Public::RecipesController < ApplicationController
     # 人数分あたりの分量を算出する
     @recipe.ingredients.each do |ingredient|
       ingredient.amount = params[:recipe][:serving].to_f * ingredient.per_amount
+      ingredient.per_amount = ingredient.amount.to_f / params[:recipe][:serving].to_f
       ingredient.save
     end
-    @recipe.update(recipe_params)
-    redirect_to recipe_path(@recipe.id)
+
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
     @recipe = Recipe.find_by(params[:recipe_id]).destroy
     redirect_to user_path(current_user)
+  end
+
+  def search
+    @genres = Genre.all
+    @recipes = Recipe.search(params[:keyword])
+    @content = params[:keyword]
+  end
+
+  def ranking
+    @genres = Genre.all
+    # 内部結合(合致しないレコードは排除)joinsによってレシピとブックマークを合体させる
+    # groupメソッドによって、ブックマークに紐づいたrecipe_idをまとめている
+    # orderメソッドによって、レコードの多い順(降順)に並び替える
+    @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order('count(bookmarks.recipe_id) desc')
+  end
+
+  def pv_ranking
+    @genres = Genre.all
+    # モデル名.all.map(&:カラム名)に同じ　配列で返す
+    @pv_ranks = Recipe.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(10).pluck(:impressionable_id))
+  end
+
+  def genre_ranking
+    @genres = Genre.all
+    @genre = Genre.find(params[:genre_id])
+    @genre_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('count(reviews.evaluation) desc')
   end
 
   private

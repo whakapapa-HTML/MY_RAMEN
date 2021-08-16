@@ -1,11 +1,16 @@
 
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <% @genres.each do |genre| %>
-    <div class="col-6">
-      <%= link_to image_tag(genre.genre_image.url, :size => '320x220'), recipe_genres_recipe_path(genre.id) %>
-      <%= genre.name %>
+    <%= render 'layouts/sidebar', genres: @genres %>
+    <div class="col">
+      <div class="row">
+        <% @genres.each do |genre| %>
+        <figure class="col-5 d-flex flex-column mt-5 mb-5 hover-parent">
+          <%= link_to image_tag(genre.genre_image.url, class: "figure d-block mx-auto", :size => '320x220'), recipe_genres_recipe_path(genre.id) %>
+            <strong class="text-center hover-mask mt-4"><%= genre.name %></strong>
+        </figure>
+        <% end %>
+      </div>
     </div>
-    <% end %>
   </div>
 </div>
