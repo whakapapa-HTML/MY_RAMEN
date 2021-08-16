@@ -1,0 +1,17 @@
+<div class="container">
+  <h2 class="contact-title p-5">お問い合わせフォーム</h2>
+  <div class="row">
+    <%= render 'layouts/error_message', obj: @contact %>
+    <div class="col-6 m-auto">
+      <%= form_with model: @contact, url: confirm_contacts_path, local:true do |f| %>
+        <%= f.label :タイトル %>
+            <%= f.text_field :title, class:"form-control" %>
+        <%= f.label :内容 %>
+            <%= f.text_area :body, class:"form-control" %>
+        <%= f.submit "確認画面へ", class: "btn btn-success mt-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,40 @@
+<div class="container">
+  <h3 class="pt-5"><%= @recipe.name %>のレビュー</h3>
+  <table class="table small table-hover mt-5">
+    <thead>
+      <tr>
+        <th style="width: 10%">投稿者名</th>
+        <th style="width: 15%">評価</th>
+        <th style="width: 15%">タイトル</th>
+        <th style="width: 50%">レビュー本文</th>
+        <th style="width: 10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @recipe.reviews.each do |review| %>
+        <tr>
+          <td><%= review.user.name %></td>
+          <td id="rate_<%= review.id %>"></td>
+           <script>
+                $('#rate_<%= review.id %>').raty({
+                  size: 20,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  starHalf: '<%= asset_path('star-half.png') %>',
+                  readOnly: true,
+                  score: <%= review.evaluation %>,
+                  half: true,
+                });
+              </script>
+          <td><%= review.title %></td>
+          <td><%= review.body %></td>
+          <td><%= link_to "削除", admin_recipe_review_path(@recipe.id, review.id), method: :delete, data:
+            { confirm: "このレビューを削除しますか？",
+              cancel: 'キャンセル',
+              commit: '削除'}, title: '削除の確認'  %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

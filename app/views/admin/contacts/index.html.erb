@@ -1,0 +1,52 @@
+<div class="container">
+  <h2 class="m-5">問い合わせ一覧</h2>
+  <div class="row">
+    <div class="col-10 m-auto">
+      <table class="table small table-hover">
+        <thead>
+        <tr>
+          <th>ユーザー名</th>
+          <th>問い合わせタイトル</th>
+          <th>受信日</th>
+          <td>問い合わせステータス</td>
+          <th>ステータス変更</th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+              <% user.contacts.each do |contact| %>
+                <tr>
+                  <td><%= contact.user.name %></td>
+                  <td><%= contact.title %></td>
+                  <td><%= contact.created_at.strftime("%Y年%m月%d日 ") %></td>
+                  <% if contact.status == "未対応" %>
+                  <td><p class="text-primary">未対応</p></td>
+                  <% elsif contact.status == '対応中' %>
+                  <td><p class="text-success">対応中</p></td>
+                  <% else %>
+                  <td><p class="text-danger">対応済み</p></td>
+                  <% end %>
+                  <td>
+                    <%= form_with model: contact, url: status_admin_contact_path(contact.id), method: :patch, local: true do |f| %>
+                      <%= f.select :status, Contact.statuses.keys %>
+                      <%= f.submit "変更" %>
+                    <% end %>
+                  </td>
+                  <td><%= link_to "返信", edit_admin_contact_path(contact) %></td>
+                  <td><%= link_to "削除", admin_contact_path(contact), method: :delete, data: {
+                    confirm: "このお問い合わせを削除しますか？",
+                    cancel: 'キャンセル',
+                    commit: '削除'}, title: '削除の確認' %>
+                  </td>
+                 </tr>
+              <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+

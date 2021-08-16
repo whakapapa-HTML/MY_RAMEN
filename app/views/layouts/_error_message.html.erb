@@ -1,0 +1,8 @@
+<% if obj.errors.any? %>
+  <ul class="error_explanation">
+    <%= obj.errors.count %>件のエラー
+    <% obj.errors.full_messages.each do |message| %>
+      <li class="text-danger small mt-1 ml-4"><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
