@@ -12,6 +12,7 @@
         <% if @recipe.reviews.where(user_id: @recipe.user.id).blank? %>
           <small>※レシピの評価はまだありません</small>
         <% else %>
+        <p id="rate_avg"></p>
           <script>
             $('#rate_avg').raty({
               size: 20,
@@ -32,7 +33,7 @@
       <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
         { confirm: "#{ @recipe.name }をあなたのレシピから削除しますか？",
           cancel: 'キャンセル',
-          commit: '削除'}, title: '削除の確認'  %>
+          commit: '削除'}, title: '削除の確認' %>
     <% end %></br>
     <div class="d-flex">
       <div class="mt-3">
