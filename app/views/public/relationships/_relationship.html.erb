@@ -1,0 +1,10 @@
+<% if current_user.following?(recipe.user) %>
+  <!--relationship#createに渡す引数(@recipe = Recipe.find(params[:recipe_id]用の引数))のrecipe_idが必要-->
+  <%= link_to user_relationships_path(recipe.user_id, recipe_id: recipe.id), method: :delete, remote: true do %>
+    <i class="fas fa-user fa-2x fab-color"></i>
+  <% end %>
+<% else %>
+  <%= link_to user_relationships_path(recipe.user_id, recipe_id: recipe.id), method: :post, remote: true do %>
+    <i class="far fa-user fa-2x fab-color"></i>
+  <% end %>
+<% end %>
