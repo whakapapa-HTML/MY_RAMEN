@@ -3,19 +3,18 @@
     <div class="card-body">
       <h4>退会手続き</h4>
       <div class="col-10 m-auto pb-3 text-center">
-        <%= form_with model: @user, url: user_unsubscribe_user_path(@user.id), method: :patch, local:true do |f| %>
+        <%= form_with model: @user, url: my_page_unsubscribe_path, method: :patch, local:true do |f| %>
           <div>
-            <%= f.radio_button :is_deleted, :false %>
-            <%= f.label :is_deleted, "有効" %>
             <%= f.radio_button :is_deleted, :true %>
             <%= f.label :is_deleted, "退会" %>
           </div>
-          <div class="mt-4">
-            <%= f.submit:'退会の確認', class:'btn btn-sm btn-danger', data:
+
+          <div class="mt-4" id="result">
+            <%= f.submit:'退会', class:'btn btn-sm btn-danger', data:
             { confirm: "本当に退会しますか？",
                 cancel: 'キャンセル',
                 commit: '退会'}, title: '変更の確認' %>
-            <%= link_to "戻る", edit_user_path, class: 'btn btn-sm btn-secondary ml-4' %>
+            <%= link_to "キャンセル", my_page_edit_path, class: 'btn btn-sm btn-secondary ml-4' %>
           </div>
         <% end %>
       </div>

@@ -1,5 +1,6 @@
 class Public::ReviewsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @recipe = Recipe.find(params[:recipe_id])
     @reviews = @recipe.reviews.all
