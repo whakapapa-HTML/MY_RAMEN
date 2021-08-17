@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       collection do
         get 'search'
         get 'ranking'
+        get 'raty_ranking'
         get 'pv_ranking'
         get 'genre_ranking'
       end

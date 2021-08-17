@@ -1,6 +1,6 @@
 class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_genre, onlt: [:show, :edit, :update, :destroy]
+  before_action :set_genre, only: [:show, :edit, :update, :destroy]
 
   def new
     @genre = Genre.new

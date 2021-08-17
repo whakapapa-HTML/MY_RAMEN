@@ -6,11 +6,15 @@
       <div class="row">
         <% @genres.each do |genre| %>
         <figure class="col-5 d-flex flex-column mt-5 mb-5 hover-parent">
-          <%= link_to image_tag(genre.genre_image.url, class: "figure d-block mx-auto", :size => '320x220'), recipe_genres_recipe_path(genre.id) %>
-            <strong class="text-center hover-mask mt-4"><%= genre.name %></strong>
+          <%= link_to recipe_genres_recipe_path(genre.id), class: "text-decoration-none" do %>
+            <%= image_tag(genre.genre_image.url, class: "figure d-block mx-auto animation", :size => '320x220') %>
+            <strong class="d-block text-center mt-3 text-dark active"><%= genre.name %></strong>
+          <% end %>
         </figure>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+
