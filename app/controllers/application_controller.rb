@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_admin!, except: [:top]
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   #protectedは呼び出された他のコントローラからも参照可能

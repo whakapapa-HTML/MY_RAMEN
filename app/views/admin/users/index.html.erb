@@ -5,6 +5,7 @@
       <table class="table small table-hover m-4">
         <thead>
             <tr>
+              <th>会員ID</th>
               <th>会員名</th>
               <th>イントロダクション</th>
               <th>ステータス</th>
@@ -14,6 +15,7 @@
         <tbody id="post">
         <% @users.each do |user| %>
           <tr>
+            <td><%= user.id %></td>
             <td><%= user.name %></td>
             <td><%= user.introduction %></td>
             <% if user.is_deleted %>
