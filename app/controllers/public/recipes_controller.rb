@@ -1,5 +1,6 @@
 class Public::RecipesController < ApplicationController
   before_action :authenticate_user!, except: [:genre, :search, :index]
+  before_action :set_recipe, only: [:show, :edit, :update]
   impressionist :actions=> [:show], :unique => [:impressionable_id, :ip_address]
 
   def new
@@ -21,7 +22,6 @@ class Public::RecipesController < ApplicationController
   def show
     # 同じ人がアクセス（同じブラウザからアクセス）した複数回、同じ記事をみた場合は1PVと数える
     @review = Review.new
-    @recipe = Recipe.find(params[:id])
     @views = @recipe.impressions.size
     @reviews = @recipe.reviews.all
     @rate_avg = @reviews.average(:evaluation).to_f
@@ -47,11 +47,9 @@ class Public::RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     # 人数分あたりの分量を算出する
     @recipe.ingredients.each do |ingredient|
       ingredient.amount = params[:recipe][:serving].to_f * ingredient.per_amount
@@ -95,8 +93,7 @@ class Public::RecipesController < ApplicationController
     @genres = Genre.all
     @genre = Genre.find(params[:genre_id])
     #　評価の高い順に並び替えている
-    @genre_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
-
+    @genre_ranks = Recipe.where(genre_id: @genre.id).joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
   end
 
 
@@ -116,6 +113,8 @@ class Public::RecipesController < ApplicationController
     )
     end
 
-
+    def set_recipe
+      @recipe = Recipe.find(params[:id])
+    end
 
 end

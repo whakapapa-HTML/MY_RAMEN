@@ -1,14 +1,13 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
-  
+  before_action :set_recipe, only: [:index, :create]
+
   def index
-    @recipe = Recipe.find(params[:recipe_id])
     @reviews = @recipe.reviews.all
     @rate_avg = @reviews.average(:evaluation).to_f
   end
 
   def create
-    @recipe = Recipe.find(params[:recipe_id])
     @review = current_user.reviews.new(review_params)
     @review.recipe_id = @recipe.id
 
@@ -29,6 +28,10 @@ class Public::ReviewsController < ApplicationController
 
     def review_params
       params.require(:review).permit(:title, :body, :evaluation)
+    end
+
+    def set_recipe
+      @recipe = Recipe.find(params[:recipe_id])
     end
 
 end

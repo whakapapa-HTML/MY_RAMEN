@@ -1,16 +1,15 @@
 class Public::ContactsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_contact, only: [:confirm, :create]
 
   def new
     @contact = Contact.new
   end
 
   def confirm
-    @contact = Contact.new(contact_params)
   end
 
   def create
-    @contact = Contact.new(contact_params)
     @contact.user_id = current_user.id
     if @contact.save
     redirect_to  thanks_contacts_path
@@ -27,7 +26,11 @@ class Public::ContactsController < ApplicationController
   private
 
     def contact_params
-        params.require(:contact).permit(:title, :body, :reply, :user_id)
+      params.require(:contact).permit(:title, :body, :reply, :user_id)
+    end
+
+    def set_contact
+      @contact = Contact.new(contact_params)
     end
 
 end

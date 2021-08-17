@@ -1,6 +1,7 @@
 class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
-  
+  before_action :set_genre, onlt: [:show, :edit, :update, :destroy]
+
   def new
     @genre = Genre.new
   end
@@ -10,7 +11,6 @@ class Admin::GenresController < ApplicationController
   end
 
   def show
-    @genre = Genre.find(params[:id])
   end
 
   def create
@@ -23,19 +23,16 @@ class Admin::GenresController < ApplicationController
   end
 
   def edit
-    @genre = Genre.find(params[:id])
   end
 
   def update
-    genre = Genre.find(params[:id])
-    if genre.update(genre_params)
-      redirect_to admin_genre_path(genre.id)
+    if @genre.update(genre_params)
+      redirect_to admin_genre_path(@genre.id)
     end
   end
 
   def destroy
-    genre = Genre.find(params[:id])
-    genre.destroy
+    @genre.destroy
     redirect_to admin_genres_path
   end
 
@@ -44,4 +41,9 @@ class Admin::GenresController < ApplicationController
    def genre_params
      params.require(:genre).permit(:name, :genre_image)
    end
+
+   def set_genre
+     @genre = Genre.find(params[:id])
+   end
+
 end
