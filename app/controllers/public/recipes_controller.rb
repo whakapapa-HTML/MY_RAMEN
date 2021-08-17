@@ -83,19 +83,21 @@ class Public::RecipesController < ApplicationController
     @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order('count(bookmarks.recipe_id) desc')
   end
 
+  def raty_ranking
+    @genres = Genre.all
+    @raty_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
+  end
+
   def pv_ranking
     @genres = Genre.all
-    # モデル名.all.map(&:カラム名)に同じ　配列で返す
-    @pv_ranks = Recipe.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').limit(10).pluck(:impressionable_id))
+    @pv_ranks = Recipe.find(Impression.group(:impressionable_id).order('count(impressionable_id) desc').pluck(:impressionable_id))
   end
 
   def genre_ranking
     @genres = Genre.all
     @genre = Genre.find(params[:genre_id])
-    #　評価の高い順に並び替えている
     @genre_ranks = Recipe.where(genre_id: @genre.id).joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
   end
-
 
   private
 
@@ -116,5 +118,6 @@ class Public::RecipesController < ApplicationController
     def set_recipe
       @recipe = Recipe.find(params[:id])
     end
+
 
 end

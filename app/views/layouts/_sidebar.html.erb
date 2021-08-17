@@ -9,8 +9,9 @@
         </li>
     <% end %>
     <li class="active mb-5 pt-5 border-top"><strong>全体ランキング検索</strong></li>
-    <li class="active mb-5"><%= link_to "ブックマーク数", ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
-    <li class="active mb-5"><%= link_to "プレビュー数", pv_ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
+    <li class="active mb-5"><%= link_to "評価の高いレシピ", raty_ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
+    <li class="active mb-5"><%= link_to "ブックマークの多いレシピ", ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
+    <li class="active mb-5"><%= link_to "プレビューの多いレシピ", pv_ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
     <li class="active mb-5 pt-5 border-top"><strong>ジャンル別ランキング検索</strong></li>
       <% @genres.each do |genre| %>
       <li class="active mb-5">
