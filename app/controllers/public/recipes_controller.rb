@@ -1,5 +1,5 @@
 class Public::RecipesController < ApplicationController
-  before_action :authenticate, except: [:genre, :search]
+  before_action :authenticate_user!, except: [:genre, :search, :index]
   impressionist :actions=> [:show], :unique => [:impressionable_id, :ip_address]
 
   def new
