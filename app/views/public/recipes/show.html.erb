@@ -1,5 +1,5 @@
 <div class="container d-flex flex-wrap">
-  <div class="col-6 mt-5 p-5">
+  <div class=" col-lg-6 col-md-8 col-sm-12 mt-5 p-3">
     <div class="d-flex flex-wrap">
       <h3><strong><%= @recipe.name %></strong></h3>
         <span class="ml-2 mt-1" id="rate_avg"></span>
@@ -11,17 +11,6 @@
           <small>※レシピの評価はまだありません</small>
         <% else %>
         <p id="rate_avg"></p>
-          <script>
-            $('#rate_avg').raty({
-              size: 20,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              readOnly: true,
-              score: <%= @rate_avg %>,
-              half: true
-            });
-          </script>
     　   <% end %>
     　  </div>
 
@@ -58,14 +47,14 @@
     </div>
     </div>
 
-  <div class="col-5 mt-5">
+  <div class="col-lg-6 col-md-8 col-sm-12 mt-5">
     <% if @recipe.recipe_image.url.blank? %>
-      <%= image_tag("m_e_others_500.png", size: '560x373') %>
+      <%= image_tag("m_e_others_500.png", width: '100%', height: '110%') %>
     <% else %>
-      <%= image_tag(@recipe.recipe_image.url, size: '560x373') %>
+      <%= image_tag(@recipe.recipe_image.url, width: '100%', height: '110%') %>
     <% end %>
   </div>
-  <div class="col-10 m-auto">
+  <div class="col-lg-10 col-md-10 col-sm-12 m-auto">
     <div class="border rounded p-4 mt-5 mb-5">
       <div class="d-flex">
         <h5 class="mr-3"><%= @recipe.serving %>人分の分量</h5>
@@ -98,29 +87,20 @@
       </table>
      </div>
     </div>
-    <div class="col-10 d-flex m-auto border-top">
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th scope="col" style="width: 10%"></th>
-            <th scope="col" style="width: 40%"></th>
-            <th scope="col" style="width: 50%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @recipe.procedures.each_with_index do |procedure, i| %>
-          <tr>
-            <th scope="row"><%= i + 1 %>.</th>
-            <td><%= procedure.explanation %></td>
-            <% if procedure.procedure_image.url.blank? %>
-            <td><%= image_tag "m_e_others_500.png", :size => '270x180' %></td>
-            <% else %>
-            <td><%= image_tag procedure.procedure_image.url, :size => '270x180' %></td>
-            <% end %>
-          </tr>
+    <div class="col-lg-10 col-md-10 col-sm-12 flex-column m-auto border-top">
+      <% @recipe.procedures.each_with_index do |procedure, i| %>
+        <div class="row pt-5">
+          <strong class="col-1 d-none d-md-block"><%= i + 1 %>.</strong>
+          <div class="col-5 d-none d-md-block"><%= procedure.explanation %></div>
+          <% if procedure.procedure_image.url.blank? %>
+          <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"><%= image_tag "m_e_others_500.png", width: '100%', height: '100%' %></div>
+          <% else %>
+          <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"><%= image_tag procedure.procedure_image.url, width: '100%', height: '100%'%></div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+        <strong class="col-1 	d-block d-md-none"><%= i + 1 %>.</strong>
+        <div class="col-lg-5 col-md-12 col-sm-12	d-block d-md-none"><%= procedure.explanation %></div>
+      <% end %>
     </div>
     <div class="col-6 m-auto pt-5">
       <% if current_user %>
@@ -160,3 +140,14 @@
   });
 </script>
 
+<script>
+  $('#rate_avg').raty({
+    size: 20,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    readOnly: true,
+    score: <%= @rate_avg %>,
+    half: true
+  });
+</script>

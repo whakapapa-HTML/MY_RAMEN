@@ -26,7 +26,7 @@
    font-family: 'Noto Serif JP', serif;;
  }
 
- li ul a {
+ li ul {
    text-decoration: none;
    list-style: none;
  }
@@ -130,17 +130,11 @@ top: 38%;
   transform: scale(1.2);
 }
 
+// スライドダウンメニュー
 
-/*アニメーション要素のスタイル*/
-.animation{
-	opacity : 0;
-	visibility: hidden;
-	transition: 1s;
-	transform: translateY(30px);
+.menuSub {
+  display: none;
 }
-/*アニメーション要素までスクロールした時のスタイル*/
-.active{
-	opacity: 1;
-	visibility: visible;
-	transform: translateY(0);
-}
+
+
+

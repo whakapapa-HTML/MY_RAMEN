@@ -2,7 +2,7 @@
   <h2 class="contact-title p-5">お問い合わせフォーム</h2>
   <div class="row">
     <%= render 'layouts/error_message', obj: @contact %>
-    <div class="col-6 m-auto">
+    <div class="col-lg-6 col-md-10 col-sm-12 m-auto">
       <%= form_with model: @contact, url: confirm_contacts_path, local:true do |f| %>
         <%= f.label :タイトル %>
             <%= f.text_field :title, class:"form-control" %>

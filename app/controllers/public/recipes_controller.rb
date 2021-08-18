@@ -85,6 +85,11 @@ class Public::RecipesController < ApplicationController
 
   def raty_ranking
     @genres = Genre.all
+    @recipes = Recipe.all
+    @review = 0
+    @recipes.each do |recipe|
+      @review = recipe.reviews.average(:evaluation).to_f
+    end
     @raty_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
   end
 
