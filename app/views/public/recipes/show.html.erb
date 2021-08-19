@@ -29,6 +29,7 @@
           commit: '削除'}, title: '削除の確認' %>
     <% end %></br>
     <div class="d-flex mt-4">
+      <% if @recipe.user != current_user %>
       <div class="mt-3">
         <p>投稿者をフォロー</p>
         <div class="relationship_btn text-center mt-3">
@@ -44,6 +45,14 @@
           </div>
         </div>
       </div>
+      <% else %>
+      <div class="mt-3 ml-4">
+        <p>ブックマーク獲得数</p>
+        <div class="mt-3 text-center">
+          <%= @recipe.bookmarks.count %>
+        </div>
+      </div>
+      <% end %>
       <div class="mt-3 ml-4">
         <p>プレビュー数</p>
         <div class="text-center mt-3">

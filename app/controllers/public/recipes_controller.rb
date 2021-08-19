@@ -9,14 +9,10 @@ class Public::RecipesController < ApplicationController
     @recipe.procedures.build
   end
 
-  def index
-    @recipes = Recipe.all.order(created_at: :desc)
-  end
-
   def genre
     @genres = Genre.all
     @genre = Genre.find(params[:id])
-    @recipes = Recipe.where(genre_id: @genre.id)
+    @recipes = Recipe.where(genre_id: @genre.id).page(params[:page]).per(10)
   end
 
   def show
@@ -71,7 +67,7 @@ class Public::RecipesController < ApplicationController
 
   def search
     @genres = Genre.all
-    @recipes = Recipe.search(params[:keyword])
+    @recipes = Recipe.search(params[:keyword]).page(params[:page]).per(10)
     @content = params[:keyword]
   end
 
@@ -86,11 +82,12 @@ class Public::RecipesController < ApplicationController
   def raty_ranking
     @genres = Genre.all
     @recipes = Recipe.all
-    @review = 0
-    @recipes.each do |recipe|
-      @review = recipe.reviews.average(:evaluation).to_f
-    end
-    @raty_ranks = Recipe.joins(:reviews).genre_ranking
+    @raty_ranks = Recipe.select('recipes.*').genre_ranking
+
+
+    #avgreviw = Review.select('recipe_id,avg(evaluation) as avg').group('recipe_id')
+    #@raty_ranks = Recipe.joins(avgreviw.recipe_id = id).select('Recipe.*').order('avgreviw.avg desc')
+
   end
 
   def pv_ranking
@@ -101,7 +98,7 @@ class Public::RecipesController < ApplicationController
   def genre_ranking
     @genres = Genre.all
     @genre = Genre.find(params[:genre_id])
-    @genre_ranks = Recipe.where(genre_id: @genre.id).joins(:reviews).genre_ranking
+    @genre_ranks = Recipe.where(genre_id: @genre.id).genre_ranking
   end
 
   private
