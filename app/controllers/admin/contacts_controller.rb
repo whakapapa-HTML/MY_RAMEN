@@ -12,19 +12,19 @@ class Admin::ContactsController < ApplicationController
     end
 
     def update
-      contact.update(contact_params)
-      user = contact.user
-      ContactMailer.send_when_admin_reply(user, contact).deliver_now  #確認メールを送信
+      @contact.update(contact_params)
+      user = @contact.user
+      ContactMailer.send_when_admin_reply(user, @contact).deliver_now  #確認メールを送信
       redirect_to admin_contacts_path
     end
 
     def status
-      contact.update!(status_params)
+      @contact.update!(status_params)
       redirect_to request.referer
     end
 
     def destroy
-      contact.destroy
+      @contact.destroy
       @contacts = Contact.page(params[:page])
       @users = User.all
       render :index
@@ -38,9 +38,9 @@ class Admin::ContactsController < ApplicationController
     def status_params
       params.require(:contact).permit(:status)
     end
-    
+
     def set_contact
-      contact = Contact.find(params[:id]) #contact_mailer.rbの引数を指定
+      @contact = Contact.find(params[:id])
     end
 
 end
