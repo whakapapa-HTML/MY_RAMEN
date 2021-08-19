@@ -19,6 +19,7 @@
             <%= image_tag(rank.recipe_image.url, class: "d-block mx-auto", :size => '320x220') %>
           <% end %>
           <strong class="text-center"><%= rank.name %></strong>
+          <p class="text-center">ブックマーク獲得数: <%= rank.bookmarks.count %></p>
         </div>
         <% end %>
       </div>
