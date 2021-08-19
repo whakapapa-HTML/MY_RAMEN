@@ -6,7 +6,7 @@
       <div class="row">
         <% @genres.each do |genre| %>
         <figure class="col-lg-5 col-md-5 col-sm-12 d-flex flex-column mt-5 mb-5 hover-parent">
-          <%= link_to image_tag(genre.genre_image.url, class: "figure d-block mx-auto", width: '75%', height: '85%'), recipe_genres_recipe_path(genre.id) %>
+          <%= link_to image_tag(genre.genre_image.url, class: "figure d-block mx-auto", width: '75%', height: '93%'), recipe_genres_recipe_path(genre.id) %>
           <strong class="text-center hover-mask"><%= genre.name %></strong>
         </figure>
         <% end %>

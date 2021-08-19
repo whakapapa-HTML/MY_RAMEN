@@ -32,6 +32,6 @@ class Recipe < ApplicationRecord
     Recipe.where('name LIKE(?)',"%#{search}%")
   end
 
-  scope :genre_ranking, -> { group("reviews.recipe_id").order('reviews.evaluation desc') }
+  scope :genre_ranking, -> { joins(:reviews).group('recipe_id').order('avg(reviews.evaluation) desc') }
 
 end

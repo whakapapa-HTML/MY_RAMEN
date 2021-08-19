@@ -4,16 +4,16 @@
       会員情報
     </div>
     <div class="tab">
-      レシピ
+      レシピ(<%= @user.recipes.count %>)
     </div>
     <div class="tab">
-      フォロー
+      フォロー(<%= @user.followings.count %>)
     </div>
     <div class="tab">
-      フォロワー
+      フォロワー(<%= @user.followers.count %>)
     </div>
     <div class="tab">
-      ブックマーク
+      ブックマーク(<%= @user.bookmarks.count %>)
     </div>
   </div>
   <div class="content-area">

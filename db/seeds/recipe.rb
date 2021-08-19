@@ -1,5 +1,5 @@
 
-3.times do |n|
+14.times do |n|
 Recipe.create!([
   {user_id: 1, genre_id: 1, name: "昔ながらの醤油らーめん", introduction: "美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！", serving: 4, recipe_image: open("#{Rails.root}/db/fixtures/DSCF9743.JPG"),
   ingredients_attributes:[
@@ -26,7 +26,7 @@ Recipe.create!([
 end
 
 
-3.times do |n|
+2.times do |n|
 Recipe.create!([
   {user_id: 2, genre_id: 2, name: "時短でできる！塩つけ麺", introduction: "美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！", serving: 4, recipe_image: open("#{Rails.root}/db/fixtures/DSCF9796.JPG"),
   ingredients_attributes:[
@@ -52,7 +52,7 @@ Recipe.create!([
 
 end
 
-3.times do |n|
+2.times do |n|
 Recipe.create!([
   {user_id: 3, genre_id: 3, name: "味噌ラーメンの作り方", introduction: "美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！美味しく簡単に作れます！！スーパーの食材だけで簡単に作ることができます！！手軽に簡単調理でお店の味！！", serving: 4, recipe_image: open("#{Rails.root}/db/fixtures/DSCF9796.JPG"),
   ingredients_attributes:[
