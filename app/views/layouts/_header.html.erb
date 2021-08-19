@@ -2,87 +2,81 @@
       <nav class="navbar navbar-expand-lg navbar-light">
         <% if user_signed_in? %>
           <%= link_to root_path do %>
-            <%= image_tag('DSCF9743-removebg-preview.png', size: '180x100') %>
+            <%= image_tag "DSCF9743-removebg-preview.png", size: "160x100", class: "d-none d-sm-block" %>
           <% end %>
         <% elsif admin_signed_in? %>
           <%= link_to admin_root_path do %>
-            <%= image_tag('DSCF9743-removebg-preview.png', size: '180x100') %>
+            <%= image_tag 'DSCF9743-removebg-preview.png', size: '180x100', class: "d-none d-sm-block"%>
           <% end %>
         <% else %>
           <%= link_to root_path do %>
-            <%= image_tag('DSCF9743-removebg-preview.png', size: '180x100') %>
+            <%= image_tag 'DSCF9743-removebg-preview.png', size: '180x100', class: "d-none d-sm-block"%>
           <% end %>
         <% end %>
-        <h1 class="bm-0"><strong>まいらーめん</strong></h1>
+        <h1 class="bm-0">まいらーめん</h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-          <li class="nav-item mr-3">
-            <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-field") do |f| %>
-              <%= f.text_field :keyword, placeholder: "レシピを検索する", class: "form-control" %>
-              <%= button_tag type: 'submit', class: 'btn search-icon' do %>
-                <i class="fas fa-search"></i>
-              <% end %>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'マイページ', my_page_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'レシピを投稿する', new_recipe_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
-          </li>
-          <% elsif admin_signed_in? %>
-          <li class="nav-item mr-3">
-            <%= form_with(url: admin_admin_searches_path, local: true, method: :get, class: "search-field d-flex") do |f| %>
-              <%= f.select :model, options_for_select({"会員" => "user", "レシピ" => "recipe"}) %>
-                <%= f.text_field :content, placeholder: "検索", class: "form-control" %>
+            <li class="nav-item mr-3 mt-3">
+              <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-field") do |f| %>
+                <%= f.text_field :keyword, placeholder: "レシピを検索する", class: "form-control" %>
                 <%= button_tag type: 'submit', class: 'btn search-icon' do %>
                   <i class="fas fa-search"></i>
                 <% end %>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'お問い合わせ一覧', admin_contacts_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'レシピ一覧',  admin_recipes_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-          </li>
-          <% else %>
-          <li class="nav-item mr-3">
-            <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-field") do |f| %>
-              <%= f.text_field :keyword, placeholder: "レシピを検索する", class: "form-control" %>
-              <%= button_tag type: 'submit', class: 'btn search-icon' do %>
-                <i class="fas fa-search"></i>
               <% end %>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "検索", admin_admin_searches_path, class: 'nav-link text-dark' %>
-          </li>
-          <li class="nav_item">
-            <%= select_tag 'name', options_for_select({新着順: 1, 人気順: 2}, 1), include_blank: true, class: 'nav-link text-dark' %>
-          </li>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'マイページ', my_page_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'レシピを投稿する', new_recipe_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+          <% elsif admin_signed_in? %>
+            <li class="nav-item mr-3 mt-3">
+              <%= form_with(url: admin_admin_searches_path, local: true, method: :get, class: "search-field d-flex") do |f| %>
+                <%= f.select :model, options_for_select({"会員" => "user", "レシピ" => "recipe"}) %>
+                  <%= f.text_field :content, placeholder: "検索", class: "form-control" %>
+                  <%= button_tag type: 'submit', class: 'btn search-icon' do %>
+                    <i class="fas fa-search"></i>
+                  <% end %>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'お問い合わせ一覧', admin_contacts_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'レシピ一覧',  admin_recipes_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '会員一覧', admin_users_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
+          <% else %>
+            <li class="nav-item mr-3 mt-3">
+              <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-field") do |f| %>
+                <%= f.text_field :keyword, placeholder: "レシピを検索する", class: "form-control" %>
+                <%= button_tag type: 'submit', class: 'btn search-icon' do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+            </li>
           <% end %>
           </ul>
         </div>

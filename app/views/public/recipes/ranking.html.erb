@@ -10,11 +10,11 @@
           <p><%= i + 1 %>位のレシピ</p>
           <%= link_to recipe_path(rank) do %>
             <% if @all_ranks.first == rank %>
-                <i class="fas fa-medal  gold card-img-overlay fa-2x text-left mt-2 ml-2"></i>
+                <i class="fas fa-medal  gold card-img-overlay fa-2x text-left mt-4 ml-2"></i>
               <% elsif @all_ranks.second == rank %>
-                <i class="fas fa-medal silver card-img-overlay fa-2x text-left mt-2 ml-2"></i>
+                <i class="fas fa-medal silver card-img-overlay fa-2x text-left mt-4 ml-2"></i>
               <% elsif @all_ranks.third == rank %>
-                <i class="fas fa-medal blonze card-img-overlay fa-2x text-left mt-2 ml-2"></i>
+                <i class="fas fa-medal blonze card-img-overlay fa-2x text-left mt-4 ml-2"></i>
             <% end %>
             <%= image_tag(rank.recipe_image.url, class: "d-block mx-auto", :size => '320x220') %>
           <% end %>
