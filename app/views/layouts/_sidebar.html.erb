@@ -1,4 +1,4 @@
-<div class="col-lg-2 col-md-2 col-sm-12 d-none d-md-block flex-column m-4">
+<div class="col-lg-2 col-md-2 col-sm-12 flex-column m-4">
   <ul class="list-unstyled pt-5 border-top menu" id="global_nav">
     <li class="active mb-5"><strong>ジャンル別検索</strong>
       <% genres.each do |genre| %>
@@ -11,14 +11,14 @@
         </ul>
     <% end %>
     </li>
-    <li class="active mb-5 pt-5 border-top menu"><strong>全体ランキング検索</strong>
+    <li class="active mb-5 pt-5 border-top menu"><strong>全体ランキング</strong>
       <ul class="list-unstyled menuSub">
         <li class="active mt-5"><%= link_to "評価の高いレシピ", raty_ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
         <li class="active mt-5"><%= link_to "ブックマークの多いレシピ", ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
         <li class="active mt-5"><%= link_to "プレビューの多いレシピ", pv_ranking_recipes_path, class: "text-decoration-none text-dark" %></li>
       </ul>
     </li>
-    <li class="active mb-5 pt-5 border-top menu"><strong>ジャンル別ランキング検索</strong>
+    <li class="active mb-5 pt-5 border-top menu"><strong>ジャンル別ランキング(レビュー順)</strong>
       <% @genres.each do |genre| %>
       <ul>
         <li class="active mt-5 menuSub">

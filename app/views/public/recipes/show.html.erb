@@ -6,15 +6,21 @@
         <%= link_to recipe_reviews_path(@recipe), class: "ml-2 mt-2" do %>
           <p>(<%= @recipe.reviews.count %>)</p>
         <% end %>
-
         <% if @recipe.reviews.where(user_id: @recipe.user.id).blank? %>
           <small>※レシピの評価はまだありません</small>
         <% else %>
         <p id="rate_avg"></p>
     　   <% end %>
     　  </div>
+    　  <div class="col-lg-6 col-md-8 col-sm-12 mt-5 d-block d-md-none">
+         <% if @recipe.recipe_image.url.blank? %>
+           <%= image_tag("m_e_others_500.png", width: '100%', height: '90%') %>
+         <% else %>
+           <%= image_tag(@recipe.recipe_image.url, width: '100%', height: '90%') %>
+         <% end %>
+       </div>
 
-    <h6 class="mt-4"><%= @recipe.introduction %></h6>
+    <p class="mt-4"><%= @recipe.introduction %></p>
     <small class="text-muted">作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
     <% if @recipe.user == current_user %>
       <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
@@ -24,14 +30,14 @@
     <% end %></br>
     <div class="d-flex mt-4">
       <div class="mt-3">
-        <strong>投稿者をフォロー</strong>
+        <p>投稿者をフォロー</p>
         <div class="relationship_btn text-center mt-3">
           <%= render 'public/relationships/relationship', recipe: @recipe %>
         </div>
         <p class="text-center"><%= @recipe.user.name %></p>
       </div>
       <div class="mt-3 ml-4">
-        <strong>ブックマーク</strong>
+        <p>ブックマーク</p>
         <div class="mt-3 text-center" id="recipe_<%= @recipe.id %>">
           <div class="bookmark_btn">
             <%= render 'public/bookmarks/bookmark', recipe: @recipe %>
@@ -39,7 +45,7 @@
         </div>
       </div>
       <div class="mt-3 ml-4">
-        <strong>プレビュー数</strong>
+        <p>プレビュー数</p>
         <div class="text-center mt-3">
         </div>
          <p class="text-center"><%= @views %></p>
@@ -47,19 +53,19 @@
     </div>
     </div>
 
-  <div class="col-lg-6 col-md-8 col-sm-12 mt-5">
+  <div class="col-lg-6 col-md-8 col-sm-12 mt-5 d-none d-lg-block">
     <% if @recipe.recipe_image.url.blank? %>
-      <%= image_tag("m_e_others_500.png", width: '100%', height: '110%') %>
+      <%= image_tag("m_e_others_500.png", width: '100%', height: '90%') %>
     <% else %>
-      <%= image_tag(@recipe.recipe_image.url, width: '100%', height: '110%') %>
+      <%= image_tag(@recipe.recipe_image.url, width: '100%', height: '90%') %>
     <% end %>
   </div>
   <div class="col-lg-10 col-md-10 col-sm-12 m-auto">
     <div class="border rounded p-4 mt-5 mb-5">
       <div class="d-flex">
-        <h5 class="mr-3"><%= @recipe.serving %>人分の分量</h5>
+        <h3 class="mr-3"><%= @recipe.serving %>人分の分量</h3>
         <%= form_with model: @recipe, url: recipe_path, method: :patch, local: true do |f| %>
-          <%= f.select :serving, options_for_select(1..30) %>
+          <%= f.select :serving, options_for_select(1..30), class: "form-control" %>
           <% @recipe.ingredients.each do |ingredient| %>
             <%= f.hidden_field :per_amount, :value => ingredient.per_amount %>
           <% end %>
@@ -90,8 +96,8 @@
     <div class="col-lg-10 col-md-10 col-sm-12 flex-column m-auto border-top">
       <% @recipe.procedures.each_with_index do |procedure, i| %>
         <div class="row pt-5">
-          <strong class="col-1 d-none d-md-block"><%= i + 1 %>.</strong>
-          <div class="col-5 d-none d-md-block"><%= procedure.explanation %></div>
+          <p class="col-1 d-none d-md-block"><%= i + 1 %>.</p>
+          <div class="col-5 d-none d-md-block"><p><%= procedure.explanation %></p></div>
           <% if procedure.procedure_image.url.blank? %>
           <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"><%= image_tag "m_e_others_500.png", width: '100%', height: '100%' %></div>
           <% else %>
@@ -99,10 +105,10 @@
           <% end %>
         </div>
         <strong class="col-1 	d-block d-md-none"><%= i + 1 %>.</strong>
-        <div class="col-lg-5 col-md-12 col-sm-12	d-block d-md-none"><%= procedure.explanation %></div>
+        <div class="col-lg-5 col-md-12 col-sm-12	d-block d-md-none"><p><%= procedure.explanation %></p></div>
       <% end %>
     </div>
-    <div class="col-6 m-auto pt-5">
+    <div class="col-lg-6 col-md-8 col-sm-12 m-auto pt-5">
       <% if current_user %>
         <% if @recipe.reviews.where(user_id: current_user.id).blank? %>
         <%= render 'layouts/error_message', obj: @recipe %>
@@ -110,11 +116,11 @@
           <%= form_with(model:[@recipe, @review], url: recipe_reviews_path(recipe_id: @recipe.id), method: :post, local: true) do |f| %>
             <div class="form-group mt-3">
               <%= f.label :タイトル %>
-              <%= f.text_field :title, class: "mt-2 form-control" %></br>
+              <%= f.text_field :title, class: "mt-2 form-control font-large input-lg" %></br>
             </div>
-            <div class="form-group">
+            <div class="form-group form-lg">
               <%= f.label :内容 %>
-              <%= f.text_area :body, class: "mt-2 form-control" %></br>
+              <%= f.text_area :body, class: "mt-2 form-control input-lg" %></br>
             </div>
             <div class="form-group" id="star">
               <% f.label :evaluation %>
