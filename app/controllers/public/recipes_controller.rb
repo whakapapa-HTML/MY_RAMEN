@@ -90,7 +90,7 @@ class Public::RecipesController < ApplicationController
     @recipes.each do |recipe|
       @review = recipe.reviews.average(:evaluation).to_f
     end
-    @raty_ranks = Recipe.joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
+    @raty_ranks = Recipe.joins(:reviews).genre_ranking
   end
 
   def pv_ranking
@@ -101,7 +101,7 @@ class Public::RecipesController < ApplicationController
   def genre_ranking
     @genres = Genre.all
     @genre = Genre.find(params[:genre_id])
-    @genre_ranks = Recipe.where(genre_id: @genre.id).joins(:reviews).group("reviews.recipe_id").order('reviews.evaluation desc')
+    @genre_ranks = Recipe.where(genre_id: @genre.id).joins(:reviews).genre_ranking
   end
 
   private
