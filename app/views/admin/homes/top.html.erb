@@ -5,7 +5,9 @@
       <h2 class="col-6 mb-5"><%= link_to "レシピ一覧", admin_recipes_path, class: "text-dark" %></h2>
       <h2 class="col-6 mb-5"><%= link_to "会員一覧", admin_users_path, class: "text-dark" %></h2>
       <h2 class="col-6 mb-5"><%= link_to "ジャンル一覧", admin_genres_path, class: "text-dark" %></h2>
-      <h2 class="col-12 mt-5"><%= link_to "ログイン ➡︎", new_admin_session_path, class: "text-dark" %></h2>
+      <h2 class="col-6 mb-5"><%= link_to "ジャンル別投稿数", genre_chart_admin_recipes_path, class: "text-dark" %></h2>
+      <h2 class="col-6 mb-5"><%= link_to "前日/先週/先月比", week_chart_admin_recipes_path, class: "text-dark" %></h2>
+      <h2 class="col-6 mt-5"><%= link_to "ログイン ➡︎", new_admin_session_path, class: "text-dark" %></h2>
     </div>
   </div>
 </div>

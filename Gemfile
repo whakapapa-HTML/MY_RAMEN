@@ -79,3 +79,4 @@ gem 'data-confirm-modal'
 gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'impressionist', git: 'https://github.com/charlotte-ruby/impressionist.git'
 gem 'rails-i18n'
+gem "chartkick"
