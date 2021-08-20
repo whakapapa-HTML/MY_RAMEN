@@ -48,6 +48,7 @@
 
 document.addEventListener("touchstart", function(){}, true);
 
+// サイドメニューのタブ
 
 $(function() {
     $("ul.menu li").hover(
@@ -60,6 +61,8 @@ $(function() {
     );
   });
 
+
+// トップ画面のフェードイン
 
 jQuery(function ($) {
   var fadeIn = $('.fade-in');
