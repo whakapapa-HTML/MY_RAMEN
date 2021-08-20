@@ -12,11 +12,10 @@ class Public::BookmarksController < ApplicationController
     bookmark.present?
     bookmark.destroy
   end
-  
 
   private
 
-    def set_recipe
-      @recipe = Recipe.find(params[:recipe_id])
-    end
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 end

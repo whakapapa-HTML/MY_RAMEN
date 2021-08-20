@@ -1,5 +1,4 @@
 class Contact < ApplicationRecord
-
   belongs_to :user
 
   with_options presence: true do
@@ -8,5 +7,4 @@ class Contact < ApplicationRecord
   end
 
   enum status: { 未対応: 0, 対応中: 1, 対応済み: 2 }
-
 end

@@ -1,0 +1,39 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/sidebar', genres: @genres %>
+    <div class="col mt-4">
+      <h2>評価の高いレシピ</h2>
+      <div class="row">
+        <% @raty_ranks.each_with_index do |rank, i| %>
+        <div class="col-5 d-flex flex-column mt-5 mb-5">
+          <p><%= i + 1 %>位のレシピ</p>
+          <%= link_to recipe_path(rank) do %>
+            <% if @raty_ranks.first == rank %>
+                <i class="fas fa-medal gold card-img-overlay fa-2x text-left mt-4 ml-2"></i>
+              <% elsif @raty_ranks.second == rank %>
+                <i class="fas fa-medal silver card-img-overlay fa-2x text-left mt-4 ml-2"></i>
+              <% elsif @raty_ranks.third == rank %>
+                <i class="fas fa-medal blonze card-img-overlay fa-2x text-left mt-4 ml-2"></i>
+            <% end %>
+            <%= image_tag(rank.recipe_image.url, class: "d-block mx-auto", :size => '320x220') %>
+          <% end %>
+          <strong class="text-center"><%= rank.name %></strong>
+          <p class="ml-2 mt-1 m-auto" id="star-rate-<%=rank.id %>"></p>
+          <script>
+             $('#star-rate-<%=rank.id %>').raty({
+                size: 20,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                score: <%= rank.reviews.average(:evaluation).to_f.round(1) %>,
+                half: true
+              });
+          </script>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

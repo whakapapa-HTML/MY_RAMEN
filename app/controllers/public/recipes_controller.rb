@@ -1,7 +1,7 @@
 class Public::RecipesController < ApplicationController
-  before_action :authenticate_user!, except: [:genre, :search, :index]
-  before_action :set_recipe, only: [:show, :edit, :update]
-  impressionist :actions=> [:show], :unique => [:impressionable_id, :ip_address]
+  before_action :authenticate_user!, except: %i[genre search index]
+  before_action :set_recipe, only: %i[show edit update]
+  impressionist actions: [:show], unique: %i[impressionable_id ip_address]
 
   def new
     @recipe = Recipe.new
@@ -22,28 +22,25 @@ class Public::RecipesController < ApplicationController
     @reviews = @recipe.reviews.all
     @rate_avg = @reviews.average(:evaluation).to_f
     # 星の表示
-    if current_user
-      @reviews = @recipe.reviews.find_by(user_id: current_user.id)
-    end
+    @reviews = @recipe.reviews.find_by(user_id: current_user.id) if current_user
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-      # 一人当たりの分量を保存する
+    # 一人当たりの分量を保存する
     @recipe.ingredients.each do |ingredient|
       ingredient.per_amount = ingredient.amount.to_f / params[:recipe][:serving].to_f
     end
 
     if @recipe.save
-      flash[:success] = "投稿に成功しました！"
+      flash[:success] = '投稿に成功しました！'
       redirect_to recipe_path(@recipe.id)
     else
       render :new
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     # 人数分あたりの分量を算出する
@@ -59,7 +56,6 @@ class Public::RecipesController < ApplicationController
       render :edit
     end
   end
-
 
   def destroy
     @recipe = Recipe.find_by(params[:recipe_id]).destroy
@@ -77,7 +73,7 @@ class Public::RecipesController < ApplicationController
     # 内部結合(合致しないレコードは排除)joinsによってレシピとブックマークを合体させる
     # groupメソッドによって、ブックマークに紐づいたrecipe_idをまとめている
     # orderメソッドによって、レコードの多い順(降順)に並び替える
-    @all_ranks = Recipe.joins(:bookmarks).group("bookmarks.recipe_id").order('count(bookmarks.recipe_id) desc')
+    @all_ranks = Recipe.joins(:bookmarks).group('bookmarks.recipe_id').order('count(bookmarks.recipe_id) desc')
   end
 
   def raty_ranking
@@ -85,10 +81,8 @@ class Public::RecipesController < ApplicationController
     @recipes = Recipe.all
     @raty_ranks = Recipe.select('recipes.*').genre_ranking
 
-
-    #avgreviw = Review.select('recipe_id,avg(evaluation) as avg').group('recipe_id')
-    #@raty_ranks = Recipe.joins(avgreviw.recipe_id = id).select('Recipe.*').order('avgreviw.avg desc')
-
+    # avgreviw = Review.select('recipe_id,avg(evaluation) as avg').group('recipe_id')
+    # @raty_ranks = Recipe.joins(avgreviw.recipe_id = id).select('Recipe.*').order('avgreviw.avg desc')
   end
 
   def pv_ranking
@@ -104,23 +98,21 @@ class Public::RecipesController < ApplicationController
 
   private
 
-    def recipe_params
-      params.require(:recipe).permit(
-        :user_id,
-        :genre_id,
-        :name,
-        :introduction,
-        :serving,
-        :recipe_image,
-        :recipe_image_cache,
-        ingredients_attributes: [:id, :name, :amount, :per_amount, :_destroy],
-        procedures_attributes: [:id, :explanation, :procedure_image, :procedure_image_cache, :_destroy]
+  def recipe_params
+    params.require(:recipe).permit(
+      :user_id,
+      :genre_id,
+      :name,
+      :introduction,
+      :serving,
+      :recipe_image,
+      :recipe_image_cache,
+      ingredients_attributes: %i[id name amount per_amount _destroy],
+      procedures_attributes: %i[id explanation procedure_image procedure_image_cache _destroy]
     )
-    end
+  end
 
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
-    end
-
-
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
 end

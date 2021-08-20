@@ -1,6 +1,6 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_recipe, only: [:index, :create]
+  before_action :set_recipe, only: %i[index create]
 
   def index
     @reviews = @recipe.reviews.all
@@ -14,7 +14,7 @@ class Public::ReviewsController < ApplicationController
     if @review.save
       redirect_to recipe_path(@recipe)
     else
-      redirect_to recipe_path(@recipe), alert: "レビューに失敗しました"
+      redirect_to recipe_path(@recipe), alert: 'レビューに失敗しました'
     end
   end
 
@@ -23,15 +23,13 @@ class Public::ReviewsController < ApplicationController
     redirect_to recipe_path(params[:recipe_id])
   end
 
-
   private
 
-    def review_params
-      params.require(:review).permit(:title, :body, :evaluation)
-    end
+  def review_params
+    params.require(:review).permit(:title, :body, :evaluation)
+  end
 
-    def set_recipe
-      @recipe = Recipe.find(params[:recipe_id])
-    end
-
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 end
