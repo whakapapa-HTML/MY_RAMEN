@@ -21,14 +21,13 @@ class Admin::GenresController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @genre.update(genre_params)
-    redirect_to admin_genre_path(@genre.id)
+      redirect_to admin_genre_path(@genre.id)
     else
-     render :edit
+      render :edit
     end
   end
 
