@@ -29,9 +29,9 @@ class GenreImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-   #version :thumb do
-   # process resize_to_fit: [180, 120]
-   #end
+  # version :thumb do
+  # process resize_to_fit: [180, 120]
+  # end
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:

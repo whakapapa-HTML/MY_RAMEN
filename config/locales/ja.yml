@@ -7,23 +7,30 @@ ja:
       next: "次 &rsaquo;"
       truncate: "..."
   activerecord:
-  errors:
-    messages:
-      record_invalid: "バリデーションに失敗しました: %{errors}"
-  models:
-    recipe: "レシピ"
-    ingredients: "材料"
-    procedures: "調理手順"
-  attributes:
-    recipe:
-      name: "レシピ名"
-      introduction: "レシピ概要"
-      serving: "人数"
-      recipe_image: "レシピ画像"
-    ingredients:
-      name: "材料名"
-      amount: "分量"
-    procedures:
-      explanation: "調理説明"
-      procedure_image: "調理画像"
-      
+    models:
+      recipe: "レシピ"
+      ingredients: "材料"
+      procedures: "調理手順"
+      contacts: "お問い合わせ"
+      user: "会員"
+      genre: "ジャンル"
+    attributes:
+      recipe:
+        name: "レシピ名"
+        introduction: "レシピ概要"
+        serving: "人数"
+        recipe_image: "レシピ画像"
+      ingredients:
+        name: "材料名"
+        amount: "分量"
+      procedures:
+        explanation: "調理説明"
+        procedure_image: "調理画像"
+      contact:
+        title: "タイトル"
+        body: "お問い合わせ内容"
+      user:
+        name: "お名前"
+      genre:
+        name: "ジャンル名"
+        genre_image: "ジャンル画像"

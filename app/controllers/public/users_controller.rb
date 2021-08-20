@@ -8,8 +8,7 @@ class Public::UsersController < ApplicationController
     @followers = @user.followers
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -19,8 +18,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-  def cancel
-  end
+  def cancel; end
 
   def unsubscribe
     @user.update(is_deleted: true)
@@ -29,11 +27,11 @@ class Public::UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :introduction)
-    end
+  def user_params
+    params.require(:user).permit(:name, :introduction)
+  end
 
-    def set_user
-      @user = current_user
-    end
+  def set_user
+    @user = current_user
+  end
 end
