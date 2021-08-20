@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <li class="nav-item mr-3 mt-3">
+            <li class="nav-item mr-3">
               <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-field") do |f| %>
                 <%= f.text_field :keyword, placeholder: "レシピを検索する", class: "form-control" %>
                 <%= button_tag type: 'submit', class: 'btn search-icon' do %>
@@ -38,7 +38,7 @@
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
           <% elsif admin_signed_in? %>
-            <li class="nav-item mr-3 mt-3">
+            <li class="nav-item mr-3">
               <%= form_with(url: admin_admin_searches_path, local: true, method: :get, class: "search-field d-flex") do |f| %>
                 <%= f.select :model, options_for_select({"会員" => "user", "レシピ" => "recipe"}) %>
                   <%= f.text_field :content, placeholder: "検索", class: "form-control" %>
@@ -63,7 +63,7 @@
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
           <% else %>
-            <li class="nav-item mr-3 mt-3">
+            <li class="nav-item mr-3">
               <%= form_with(url: search_recipes_path, local: true, method: :get, class: "search-field") do |f| %>
                 <%= f.text_field :keyword, placeholder: "レシピを検索する", class: "form-control" %>
                 <%= button_tag type: 'submit', class: 'btn search-icon' do %>

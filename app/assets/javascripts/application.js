@@ -20,10 +20,12 @@
 //= require jquery_ujs
 //= require data-confirm-modal
 //= require activestorage
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 
-/*global $*/
+/*global jQuery $*/
 
  $(function() {
 
@@ -57,3 +59,18 @@ $(function() {
       }
     );
   });
+
+
+jQuery(function ($) {
+  var fadeIn = $('.fade-in');
+  $(window).scroll(function () {
+    $(fadeIn).each(function () {
+      var offset = $(this).offset().top;
+      var scroll = $(window).scrollTop();
+      var windowHeight = $(window).height();
+      if (scroll > offset - windowHeight + 100) {
+        $(this).addClass("scroll-in");
+      }
+    });
+  });
+});

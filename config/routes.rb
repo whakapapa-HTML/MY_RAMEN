@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     resources :users, except: [:create, :new, :destroy]
     resources :genres
     resources :recipes, only: [:index, :show, :destroy] do
+      collection do
+        get 'genre_chart'
+        get 'week_chart'
+      end
       resources :reviews, only: [:index, :destroy]
     end
     resources :contacts do

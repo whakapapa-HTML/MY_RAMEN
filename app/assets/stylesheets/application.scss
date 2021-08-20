@@ -19,15 +19,6 @@
  @import 'font-awesome';
 
 
-  html{
-   font-size: 65.5%;
- }
-
- body{
-   font-size:1.6rem;/* 16px*/
-   line-height: 2;
-
- }
 
  h1 {
 
@@ -44,16 +35,16 @@
 
 @media (min-width: 1200px) {/* 1200px以上*/
   h1 {
-      font-size: 3.6rem;/* 36px*/
+      font-size: 2.6rem;/* 36px*/
   }
   h2 {
-      font-size: 2.4rem;/* 24px*/
+      font-size: 1.4rem;/* 24px*/
   }
   h3 {
-      font-size: 2.2rem;/* 20px*/
+      font-size: 1.2rem;/* 20px*/
   }
   strong {
-    font-size: 1.8rem;/* 20px*/
+    font-size: 1.2rem;/* 20px*/
   }
 }
 
@@ -210,7 +201,23 @@ top: 38%;
   border-radius: 15px;     /*角を丸くする*/
 }
 
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {
-  border-radius: 15px;    /*角を丸くする*/
+
+/* スクロールCSS */
+.fade-in {
+  opacity: 0;
+  transition-duration: 1100ms;
+  transition-property: opacity, transform;
+}
+
+.fade-in-up {
+  transform: translate(0, 50px);
+}
+
+.fade-in-down {
+  transform: translate(0, -50px);
+}
+
+.scroll-in {
+  opacity: 1;
+  transform: translate(0, 0);
 }
