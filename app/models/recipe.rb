@@ -39,8 +39,6 @@ class Recipe < ApplicationRecord
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day) }
   scope :created_this_week, -> { where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day) } # 先週比の計算
   scope :created_last_week, -> { where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day) }
-  scope :created_this_month, lambda {
-                               where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day)
-                             }                                   # 先月比の計算
+  scope :created_this_month, lambda { where(created_at: Time.zone.now.beginning_of_month..Time.zone.now.end_of_day) }
   scope :created_last_month, -> { where(created_at: 2.month.ago.beginning_of_day..1.month.ago.end_of_day) }
 end
