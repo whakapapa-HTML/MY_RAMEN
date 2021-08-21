@@ -2,14 +2,13 @@
   <div class=" col-lg-6 col-md-8 col-sm-12 mt-5 p-3">
     <div class="d-flex flex-wrap">
       <h3><strong><%= @recipe.name %></strong></h3>
-        <span class="ml-2 mt-1" id="rate_avg"></span>
-        <%= link_to recipe_reviews_path(@recipe), class: "ml-2 mt-2" do %>
-          <p>(<%= @recipe.reviews.count %>)</p>
-        <% end %>
-        <% if @recipe.reviews.where(user_id: @recipe.user.id).blank? %>
+        <% if @recipe.reviews.blank? %>
           <small>※レシピの評価はまだありません</small>
         <% else %>
-        <p id="rate_avg"></p>
+        <span class="ml-2" id="rate_avg"></span>
+        <%= link_to recipe_reviews_path(@recipe), class: "ml-2 mt-1" do %>
+          <p>(<%= @recipe.reviews.count %>)</p>
+        <% end %>
     　   <% end %>
     　  </div>
     　  <div class="col-lg-6 col-md-8 col-sm-12 mt-5 d-block d-md-none">
@@ -20,7 +19,7 @@
          <% end %>
        </div>
 
-    <p class="mt-4"><%= @recipe.introduction %></p>
+    <p class="p-3 bg-light border rounded"><%= @recipe.introduction %></p>
     <small class="text-muted">作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
     <% if @recipe.user == current_user %>
       <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
@@ -73,11 +72,8 @@
     <div class="border rounded p-4 mt-5 mb-5">
       <div class="d-flex">
         <h3 class="mr-3"><%= @recipe.serving %>人分の分量</h3>
-        <%= form_with model: @recipe, url: recipe_path, method: :patch, local: true do |f| %>
+        <%= form_with model: @recipe, url: serving_update_recipe_path, method: :patch, local: true do |f| %>
           <%= f.select :serving, options_for_select(1..30), class: "form-control" %>
-          <% @recipe.ingredients.each do |ingredient| %>
-            <%= f.hidden_field :per_amount, :value => ingredient.per_amount %>
-          <% end %>
           <%= f.label :人分へ %>
           <%= f.submit "変換する" %>
         <% end %>
@@ -106,7 +102,7 @@
       <% @recipe.procedures.each_with_index do |procedure, i| %>
         <div class="row pt-5">
           <p class="col-1 d-none d-md-block"><%= i + 1 %>.</p>
-          <div class="col-5 d-none d-md-block"><p><%= procedure.explanation %></p></div>
+          <div class="col-5 d-none d-md-block"><p class="p-3 bg-light border rounded"><%= procedure.explanation %></p></div>
           <% if procedure.procedure_image.url.blank? %>
           <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"><%= image_tag "m_e_others_500.png", width: '100%', height: '100%' %></div>
           <% else %>

@@ -43,6 +43,9 @@ Rails.application.routes.draw do
       end
     end
     resources :recipes do
+      member do 
+        patch 'serving_update'
+      end
       collection do
         get 'search'
         get 'ranking'
