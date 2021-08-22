@@ -1,19 +1,22 @@
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar navbar-expand-lg navbar-light p-4">
         <% if user_signed_in? %>
           <%= link_to root_path do %>
-            <%= image_tag "DSCF9743-removebg-preview.png", size: "160x100", class: "d-none d-sm-block" %>
+            <%= image_tag "2656826.jpg", size: "100x70", class: "d-none d-sm-block mr-3" %>
           <% end %>
         <% elsif admin_signed_in? %>
           <%= link_to admin_root_path do %>
-            <%= image_tag 'DSCF9743-removebg-preview.png', size: '180x100', class: "d-none d-sm-block"%>
+            <%= image_tag '2656826.jpg', size: '100x70', class: "d-none d-sm-block mr-3"%>
           <% end %>
         <% else %>
           <%= link_to root_path do %>
-            <%= image_tag 'DSCF9743-removebg-preview.png', size: '180x100', class: "d-none d-sm-block"%>
+            <%= image_tag '2656826.jpg', size: '100x70', class: "d-none d-sm-block mr-3"%>
           <% end %>
         <% end %>
-        <h1 class="bm-0">まいらーめん</h1>
+        <div class="flex-column">
+          <h1 class="">まいらーめん</h1>
+          <small class="ml-2">自分だけのオリジナルらーめんを作ろう ！</small>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
