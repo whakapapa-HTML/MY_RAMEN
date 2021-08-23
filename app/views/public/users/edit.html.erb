@@ -2,7 +2,8 @@
   <h3 class="m-5">会員情報の編集</h3>
     <div class="row">
       <div class="col-10 m-auto">
-      <%= form_with model: @user, url: user_path(@user.id), method: :patch, local:true do |f| %>
+      <%= render 'layouts/error_message', obj: @user %>
+      <%= form_with model: @user, url: user_path(@user), method: :patch, local:true do |f| %>
       <table class="table small">
         <tr>
           <td>ユーザー名</td>
@@ -19,8 +20,8 @@
       </table>
       <div class="col-12 text-center">
         <%= f.submit "変更する", class: "btn btn-primary" %>
-        <%= link_to "退会手続きへ", user_cancel_user_path(@user), class: "btn btn-success" %>
-         <%= link_to "戻る", user_path(@user), class: 'btn btn-sm btn-secondary ml-4' %>
+        <%= link_to "退会手続きへ", my_page_cancel_path, class: "btn btn-success" %>
+         <%= link_to "戻る", my_page_path, class: 'btn btn-sm btn-secondary ml-4' %>
       </div>
       <% end %>
     </div>

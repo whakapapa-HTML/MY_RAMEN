@@ -1,4 +1,5 @@
 <div class="container">
+  <%= render 'layouts/error_message', obj: @genre %>
   <%= form_with model: @genre, url: admin_genre_path, id: 'update_genre', class: 'update_genre form-horizontal', local: true do |f| %>
    <%= render 'genre_field', f: f %>
   <% end %>

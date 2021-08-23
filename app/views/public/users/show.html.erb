@@ -4,21 +4,21 @@
       会員情報
     </div>
     <div class="tab">
-      レシピ
+      レシピ(<%= @user.recipes.count %>)
     </div>
     <div class="tab">
-      フォロー
+      フォロー(<%= @user.followings.count %>)
     </div>
     <div class="tab">
-      フォロワー
+      フォロワー(<%= @user.followers.count %>)
     </div>
     <div class="tab">
-      ブックマーク
+      ブックマーク(<%= @user.bookmarks.count %>)
     </div>
   </div>
   <div class="content-area">
     <div class="content show p-5">
-     <table class="table small col-8 m-auto">
+     <table class="table small col-lg-10 col-md-10 col-sm-12 m-auto">
         <tr>
           <td>ユーザー名</td>
           <td><%= @user.name %></td>
@@ -32,11 +32,11 @@
           <td><%= @user.email %></td>
         </tr>
       </table>
-      <div><%= link_to "編集する", edit_user_path, class: "btn btn-primary mt-5" %></div>
+      <div><%= link_to "編集する", my_page_edit_path, class: "btn btn-primary mt-5" %></div>
     </div>
     <div class="content p-5">
       <div class="col-10 m-auto">
-        <table class="table small table-hover">
+        <table class="table small col-lg-10 col-md-10 col-sm-12 m-auto table-hover">
         <thead>
           <tr>
             <th scope="col"></th>

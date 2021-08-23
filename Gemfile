@@ -34,12 +34,15 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-#gem 'bootsnap', '>= 1.1.0', require: false
+# gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 4.1.0'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 group :development do
@@ -55,7 +58,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  #gem 'chromedriver-helper'
 end
 
 group :production do
@@ -63,19 +66,25 @@ group :production do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'
-gem 'ransack', '~> 2.4', '>= 2.4.2'
-gem 'font-awesome-sass', '~> 5.13'
+gem 'bootstrap', '~> 4.5'
+gem 'carrierwave', '~> 2.0'
+gem 'chartkick'
 gem 'cocoon'
+gem 'data-confirm-modal'
+gem 'devise'
+gem 'dotenv-rails'
+gem 'fog-aws'
+gem 'font-awesome-sass', '~> 5.13'
+gem 'impressionist', git: 'https://github.com/charlotte-ruby/impressionist.git'
 gem 'jquery-rails', '~> 4.4'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
-gem 'carrierwave', '~> 2.0'
-gem 'mini_magick'
-gem 'fog-aws'
-gem 'dotenv-rails'
-gem 'bootstrap', '~> 4.5'
-gem 'data-confirm-modal'
 gem 'listen', '>= 3.0.5', '< 3.2'
-gem 'impressionist', '~>1.6.1'
+gem 'mini_magick'
 gem 'rails-i18n'
+gem 'ransack', '~> 2.4', '>= 2.4.2'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'impressionist', git: 'https://github.com/charlotte-ruby/impressionist.git'
+
+
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false

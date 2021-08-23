@@ -5,12 +5,20 @@
       <h2><%= @genre.name %>のレシピ一覧</h2>
       <div class="row">
         <% @recipes.each do |recipe| %>
-        <div class="col-5 d-flex flex-column mt-5 mb-5">
-          <%= link_to image_tag(recipe.recipe_image.url, class: "d-block mx-auto", :size => '320x220'), recipe_path(recipe) %>
-          <strong class="text-center"><%= recipe.name %></strong>
+        <div class="col-lg-6 col-md-12 d-flex flex-wrap justify-content-center mt-5 mb-5">
+          <%= link_to image_tag(recipe.recipe_image.url, class: "d-block mx-auto",width: '75%', height: '90%'), recipe_path(recipe) %>
+          <div class="d-flex flex-column p-4">
+            <strong class="text-center mb-2"><%= recipe.name %></strong>
+            <small><%= recipe.introduction.truncate(120) %></small>
+            <small class="ml-auto"><%= link_to "もっと見る→", recipe_path(recipe)%></small>
+          </div>
         </div>
         <% end %>
       </div>
+      <%= paginate @recipes %>
     </div>
   </div>
 </div>
+
+
+

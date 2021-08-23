@@ -6,12 +6,14 @@
       <div class="row">
         <h3 class="col-12">【レシピの検索結果】検索ワード：<%= @content %></h3>
         <% @recipes.each do |recipe| %>
-        <div class="col-5 d-flex flex-column mt-5 mb-5">
+        <div class="col-lg-5 col-md-12 col-sm-12 d-flex flex-column mt-5 mb-5">
            <%= link_to image_tag(recipe.recipe_image.url,class: "d-block mx-auto", size: '320x220'), recipe_path(recipe) %>
           <strong class="text-center"><%= recipe.name %></strong>
         </div>
         <% end %>
       </div>
+      <%= paginate @recipes %>
     </div>
   </div>
 </div>
+

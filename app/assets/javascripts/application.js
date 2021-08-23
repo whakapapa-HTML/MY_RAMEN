@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -14,14 +15,17 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery
 //= require rails-ujs
 //= require jquery_ujs
 //= require data-confirm-modal
 //= require activestorage
+//= require chartkick
+//= require Chart.bundle
 //= require_tree .
 
 
-/*global $*/
+/*global jQuery $*/
 
  $(function() {
 
@@ -44,3 +48,32 @@
 
 document.addEventListener("touchstart", function(){}, true);
 
+// サイドメニューのタブ
+
+$(function() {
+    $("ul.menu li").hover(
+      function() {
+        $(".menuSub:not(:animated)", this).slideDown();
+      },
+      function() {
+        $(".menuSub", this).slideUp();
+      }
+    );
+  });
+
+
+// トップ画面のフェードイン
+
+jQuery(function ($) {
+  var fadeIn = $('.fade-in');
+  $(window).scroll(function () {
+    $(fadeIn).each(function () {
+      var offset = $(this).offset().top;
+      var scroll = $(window).scrollTop();
+      var windowHeight = $(window).height();
+      if (scroll > offset - windowHeight + 100) {
+        $(this).addClass("scroll-in");
+      }
+    });
+  });
+});

@@ -1,0 +1,15 @@
+
+
+  <tbody>
+    <tr>
+      <td><%= present.count %></td>
+      <td><%= prev.count %></td>
+      <% if prev.count == 0 %>
+        <td>投稿はなし</td>
+      <% else %>
+        <td><% the_something_before =  present.count / prev.count.to_f  %>
+       　    <%= (the_something_before * 100).round %>%</td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

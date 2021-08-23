@@ -8,11 +8,11 @@
             <h6 class="mt-2 mb-3">Link</h6>
             <ul class="p-0 list-unstyled">
               <li>
-                <a href="" title="About" class="">会社概要</a>
+                <a href="" title="About" class="text-dark">会社概要</a>
               </li>
               <% if user_signed_in? %>
               <li>
-                <%= link_to "お問い合わせ",  new_contact_path %>
+                <%= link_to "お問い合わせ",  new_contact_path, class: "text-dark" %>
               </li>
               <% end %>
             </ul>

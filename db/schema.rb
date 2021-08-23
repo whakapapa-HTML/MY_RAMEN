@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_064129) do
+ActiveRecord::Schema.define(version: 2021_08_21_130933) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,8 +29,6 @@ ActiveRecord::Schema.define(version: 2021_08_15_064129) do
     t.integer "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["recipe_id"], name: "index_bookmarks_on_recipe_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -45,9 +43,9 @@ ActiveRecord::Schema.define(version: 2021_08_15_064129) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
+    t.string "genre_image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "genre_image", null: false
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -82,15 +80,14 @@ ActiveRecord::Schema.define(version: 2021_08_15_064129) do
     t.float "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "per_amount", null: false
   end
 
   create_table "procedures", force: :cascade do |t|
     t.integer "recipe_id", null: false
     t.text "explanation", null: false
+    t.string "procedure_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "procedure_image"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -99,15 +96,17 @@ ActiveRecord::Schema.define(version: 2021_08_15_064129) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "serving", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "recipe_image", null: false
     t.integer "impressions_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id", null: false
     t.integer "followed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -126,7 +125,7 @@ ActiveRecord::Schema.define(version: 2021_08_15_064129) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name", null: false
+    t.string "name"
     t.text "introduction"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false

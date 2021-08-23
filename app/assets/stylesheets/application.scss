@@ -20,6 +20,52 @@
 
 
 
+ h1 {
+
+   font-size: 36px;/* IE8以下とAndroid4.3以下用フォールバック */
+
+    font-size: calc(2.4rem + ((1vw - 0.64rem) * 2.1429));/* 24px~36pxで可変*/
+  line-height: 1.3;
+}
+  h2 {
+    font-size: 24px;/* IE8以下とAndroid4.3以下用フォールバック */
+    font-size: calc(2rem + ((1vw - 0.64rem) * 0.7143));/* 20px~24pxで可変*/
+    line-height: 1.3;
+  }
+
+@media (min-width: 1200px) {/* 1200px以上*/
+  h1 {
+      font-size: 2.6rem;/* 36px*/
+  }
+  h2 {
+      font-size: 1.4rem;/* 24px*/
+  }
+  h3 {
+      font-size: 1.2rem;/* 20px*/
+  }
+  strong {
+    font-size: 1.2rem;/* 20px*/
+  }
+}
+
+@media screen and (max-width: 640px) {/* 640px以下*/
+  body{
+       line-height: 1.5;
+  }
+  h1{
+      font-size: 2.4rem;/* 24px*/
+  }
+  h2 {
+      font-size: 2rem;/* 20px*/
+  }
+  p, a{
+      font-size: 14px;
+  }
+  strong {
+     font-size:  1.4rem;
+  }
+
+}
 // フォント指定
 
  * {
@@ -130,4 +176,48 @@ top: 38%;
   transform: scale(1.2);
 }
 
+// スライドダウンメニュー
 
+.menuSub {
+  display: none;
+}
+
+
+
+// ページネーションCSS
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+
+/* スクロールCSS */
+.fade-in {
+  opacity: 0;
+  transition-duration: 1100ms;
+  transition-property: opacity, transform;
+}
+
+.fade-in-up {
+  transform: translate(0, 50px);
+}
+
+.fade-in-down {
+  transform: translate(0, -50px);
+}
+
+.scroll-in {
+  opacity: 1;
+  transform: translate(0, 0);
+}

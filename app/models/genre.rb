@@ -1,5 +1,4 @@
 class Genre < ApplicationRecord
-
   has_many	:recipes
   mount_uploader :genre_image, GenreImageUploader
 
@@ -7,5 +6,4 @@ class Genre < ApplicationRecord
     validates :name
     validates :genre_image
   end
-
 end

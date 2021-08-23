@@ -1,4 +1,5 @@
 class Admin::ReviewsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @recipe = Recipe.find(params[:recipe_id])

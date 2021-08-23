@@ -1,31 +1,25 @@
 <div class="container d-flex flex-wrap">
-  <div class="col-6 mt-5 p-5">
+  <div class=" col-lg-6 col-md-8 col-sm-12 mt-5 p-3">
     <div class="d-flex flex-wrap">
       <h3><strong><%= @recipe.name %></strong></h3>
-        <span class="ml-2 mt-1" id="rate_avg"></span>
-        <%= link_to recipe_reviews_path(@recipe), class: "ml-2 mt-2" do %>
-          <p>(<%= @recipe.reviews.count %>)</p>
-        <% end %>
-
-        <% if @recipe.reviews.where(user_id: @recipe.user.id).blank? %>
+        <% if @recipe.reviews.blank? %>
           <small>※レシピの評価はまだありません</small>
         <% else %>
-        <p id="rate_avg"></p>
-          <script>
-            $('#rate_avg').raty({
-              size: 20,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              starHalf: '<%= asset_path('star-half.png') %>',
-              readOnly: true,
-              score: <%= @rate_avg %>,
-              half: true
-            });
-          </script>
+        <span class="ml-2" id="rate_avg"></span>
+        <%= link_to recipe_reviews_path(@recipe), class: "ml-2 mt-1" do %>
+          <p>(<%= @recipe.reviews.count %>)</p>
+        <% end %>
     　   <% end %>
     　  </div>
+    　  <div class="col-lg-6 col-md-8 col-sm-12 mt-5 d-block d-md-none">
+         <% if @recipe.recipe_image.url.blank? %>
+           <%= image_tag("m_e_others_500.png", width: '100%', height: '90%') %>
+         <% else %>
+           <%= image_tag(@recipe.recipe_image.url, width: '100%', height: '90%') %>
+         <% end %>
+       </div>
 
-    <h6 class="mt-4"><%= @recipe.introduction %></h6>
+    <p class="p-3 bg-light border rounded"><%= @recipe.introduction %></p>
     <small class="text-muted">作成日時 : <%= @recipe.created_at.to_s(:datetime_jp) %></small>
     <% if @recipe.user == current_user %>
       <%= link_to "編集する", edit_recipe_path(@recipe) %> | <%= link_to "削除する", recipe_path(@recipe), method: :delete, data:
@@ -34,23 +28,32 @@
           commit: '削除'}, title: '削除の確認' %>
     <% end %></br>
     <div class="d-flex mt-4">
+      <% if @recipe.user != current_user %>
       <div class="mt-3">
-        <strong>投稿者をフォロー</strong>
+        <p>投稿者をフォロー</p>
         <div class="relationship_btn text-center mt-3">
           <%= render 'public/relationships/relationship', recipe: @recipe %>
         </div>
         <p class="text-center"><%= @recipe.user.name %></p>
       </div>
       <div class="mt-3 ml-4">
-        <strong>ブックマーク</strong>
+        <p>ブックマーク</p>
         <div class="mt-3 text-center" id="recipe_<%= @recipe.id %>">
           <div class="bookmark_btn">
             <%= render 'public/bookmarks/bookmark', recipe: @recipe %>
           </div>
         </div>
       </div>
+      <% else %>
       <div class="mt-3 ml-4">
-        <strong>プレビュー数</strong>
+        <p>ブックマーク獲得数</p>
+        <div class="mt-3 text-center">
+          <%= @recipe.bookmarks.count %>
+        </div>
+      </div>
+      <% end %>
+      <div class="mt-3 ml-4">
+        <p>プレビュー数</p>
         <div class="text-center mt-3">
         </div>
          <p class="text-center"><%= @views %></p>
@@ -58,22 +61,19 @@
     </div>
     </div>
 
-  <div class="col-5 mt-5">
+  <div class="col-lg-6 col-md-8 col-sm-12 mt-5 d-none d-lg-block">
     <% if @recipe.recipe_image.url.blank? %>
-      <%= image_tag("m_e_others_500.png", size: '560x373') %>
+      <%= image_tag("m_e_others_500.png", width: '100%', height: '90%') %>
     <% else %>
-      <%= image_tag(@recipe.recipe_image.url, size: '560x373') %>
+      <%= image_tag(@recipe.recipe_image.url, width: '100%', height: '90%') %>
     <% end %>
   </div>
-  <div class="col-10 m-auto">
+  <div class="col-lg-10 col-md-10 col-sm-12 m-auto">
     <div class="border rounded p-4 mt-5 mb-5">
       <div class="d-flex">
-        <h5 class="mr-3"><%= @recipe.serving %>人分の分量</h5>
-        <%= form_with model: @recipe, url: recipe_path, method: :patch, local: true do |f| %>
-          <%= f.select :serving, options_for_select(1..30) %>
-          <% @recipe.ingredients.each do |ingredient| %>
-            <%= f.hidden_field :per_amount, :value => ingredient.per_amount %>
-          <% end %>
+        <h3 class="mr-3"><%= @recipe.serving %>人分の分量</h3>
+        <%= form_with model: @recipe, url: serving_update_recipe_path, method: :patch, local: true do |f| %>
+          <%= f.select :serving, options_for_select(1..30), class: "form-control" %>
           <%= f.label :人分へ %>
           <%= f.submit "変換する" %>
         <% end %>
@@ -98,31 +98,22 @@
       </table>
      </div>
     </div>
-    <div class="col-10 d-flex m-auto border-top">
-      <table class="table table-borderless">
-        <thead>
-          <tr>
-            <th scope="col" style="width: 10%"></th>
-            <th scope="col" style="width: 40%"></th>
-            <th scope="col" style="width: 50%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @recipe.procedures.each_with_index do |procedure, i| %>
-          <tr>
-            <th scope="row"><%= i + 1 %>.</th>
-            <td><%= procedure.explanation %></td>
-            <% if procedure.procedure_image.url.blank? %>
-            <td><%= image_tag "m_e_others_500.png", :size => '270x180' %></td>
-            <% else %>
-            <td><%= image_tag procedure.procedure_image.url, :size => '270x180' %></td>
-            <% end %>
-          </tr>
+    <div class="col-lg-10 col-md-10 col-sm-12 flex-column m-auto border-top">
+      <% @recipe.procedures.each_with_index do |procedure, i| %>
+        <div class="row pt-5">
+          <p class="col-1 d-none d-md-block"><%= i + 1 %>.</p>
+          <div class="col-5 d-none d-md-block"><p class="p-3 bg-light border rounded"><%= procedure.explanation %></p></div>
+          <% if procedure.procedure_image.url.blank? %>
+          <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"><%= image_tag "m_e_others_500.png", width: '100%', height: '100%' %></div>
+          <% else %>
+          <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center"><%= image_tag procedure.procedure_image.url, width: '100%', height: '100%'%></div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+        <strong class="col-1 	d-block d-md-none"><%= i + 1 %>.</strong>
+        <div class="col-lg-5 col-md-12 col-sm-12	d-block d-md-none"><p><%= procedure.explanation %></p></div>
+      <% end %>
     </div>
-    <div class="col-6 m-auto pt-5">
+    <div class="col-lg-6 col-md-8 col-sm-12 m-auto pt-5">
       <% if current_user %>
         <% if @recipe.reviews.where(user_id: current_user.id).blank? %>
         <%= render 'layouts/error_message', obj: @recipe %>
@@ -130,11 +121,11 @@
           <%= form_with(model:[@recipe, @review], url: recipe_reviews_path(recipe_id: @recipe.id), method: :post, local: true) do |f| %>
             <div class="form-group mt-3">
               <%= f.label :タイトル %>
-              <%= f.text_field :title, class: "mt-2 form-control" %></br>
+              <%= f.text_field :title, class: "mt-2 form-control font-large input-lg" %></br>
             </div>
-            <div class="form-group">
+            <div class="form-group form-lg">
               <%= f.label :内容 %>
-              <%= f.text_area :body, class: "mt-2 form-control" %></br>
+              <%= f.text_area :body, class: "mt-2 form-control input-lg" %></br>
             </div>
             <div class="form-group" id="star">
               <% f.label :evaluation %>
@@ -160,3 +151,14 @@
   });
 </script>
 
+<script>
+  $('#rate_avg').raty({
+    size: 20,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    readOnly: true,
+    score: <%= @rate_avg %>,
+    half: true
+  });
+</script>
