@@ -31,6 +31,9 @@ ja:
         body: "お問い合わせ内容"
       user:
         name: "お名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
       genre:
         name: "ジャンル名"
         genre_image: "ジャンル画像"
