@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <% if @model == 'user' %>
-      <h3 class="col-12">【Usersモデルの検索結果】検索ワード：<%= @content %></h3>
+      <h3 class="col-12">【会員の検索結果】検索ワード：<%= @content %></h3>
       <%= render 'admin/searches/users', users: @records %>
     <% else @model == 'posts' %>
-      <h3>【Postsモデルの検索結果】検索ワード：<%= @content %></h3>
+      <h3>【レシピの検索結果】検索ワード：<%= @content %></h3>
       <%= render 'admin/searches/recipes', recipes: @records %>
     <% end %>
   </div>

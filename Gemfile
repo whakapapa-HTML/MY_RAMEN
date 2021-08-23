@@ -41,6 +41,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 4.1.0'
+  gem "factory_bot_rails"
+  gem 'faker'
 end
 
 group :development do
@@ -56,7 +58,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  #gem 'chromedriver-helper'
 end
 
 group :production do
@@ -82,6 +84,7 @@ gem 'rails-i18n'
 gem 'ransack', '~> 2.4', '>= 2.4.2'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'impressionist', git: 'https://github.com/charlotte-ruby/impressionist.git'
+
 
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
