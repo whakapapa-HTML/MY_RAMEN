@@ -65,7 +65,7 @@ class Public::RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find_by(params[:recipe_id]).destroy
-    redirect_to user_path(current_user)
+    redirect_to  my_page_path(current_user)
   end
 
 
