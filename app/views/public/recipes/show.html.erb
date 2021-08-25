@@ -113,11 +113,11 @@
         <div class="col-lg-5 col-md-12 col-sm-12	d-block d-md-none"><p><%= procedure.explanation %></p></div>
       <% end %>
     </div>
-    <div class="col-lg-6 col-md-8 col-sm-12 m-auto pt-5">
+    <div class="col-lg-6 col-md-8 col-sm-12 mt-5 mx-auto pt-5 bg-light border rounded">
       <% if current_user %>
         <% if @recipe.reviews.where(user_id: current_user.id).blank? %>
         <%= render 'layouts/error_message', obj: @recipe %>
-          <strong>レビューを書く</strong>
+          <strong><i class="fas fa-edit mr-3"></i>レビューを書く</strong>
           <%= form_with(model:[@recipe, @review], url: recipe_reviews_path(recipe_id: @recipe.id), method: :post, local: true) do |f| %>
             <div class="form-group mt-3">
               <%= f.label :タイトル %>
@@ -131,7 +131,7 @@
               <% f.label :evaluation %>
               <%= f.hidden_field :evaluation, id: :review_star, class:'form-control' %>
             </div>
-            <%= f.submit "送信する", class:"btn btn-success mt-3" %>
+            <%= f.submit "送信する", class:"btn btn-success mt-3 mb-3" %>
           <% end %>
         <% else %>
           <strong class="m-5">レビューをいただきありがとうございました！</strong>
