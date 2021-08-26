@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   has_many :recipes,	dependent: :destroy
   has_many :bookmarks,	dependent: :destroy
   has_many :reviews,	dependent: :destroy
@@ -15,30 +15,31 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :name
+
     validates :email
     validates :password, on: :create # 新規登録するときにのみバリデーションによる入力チェックがかかるように変更
   end
-  
+
   validates :introduction, length: { maximum: 150 }
-  
+
   # superで渡された引数を親クラスに受け渡しできる
 
   def active_for_authentication?
     super && (is_deleted == false)
   end
-  
+
   # フォロー機能のメソッド
 
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
-  
+
   def unfollow(user_id)
     relationships.find_by(followed_id: user_id).destroy
   end
-  
+
   def following?(user)
     followings.include?(user)
   end
-  
+
 end

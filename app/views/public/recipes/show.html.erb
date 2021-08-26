@@ -113,7 +113,7 @@
         <div class="col-lg-5 col-md-12 col-sm-12	d-block d-md-none"><p><%= procedure.explanation %></p></div>
       <% end %>
     </div>
-    <div class="col-lg-6 col-md-8 col-sm-12 mt-5 mx-auto pt-5 bg-light border rounded">
+    <div class="col-lg-8 col-md-8 col-sm-12 mt-5 mx-auto p-5 bg-light border rounded">
       <% if current_user %>
         <% if @recipe.reviews.where(user_id: current_user.id).blank? %>
         <%= render 'layouts/error_message', obj: @recipe %>
@@ -134,7 +134,9 @@
             <%= f.submit "送信する", class:"btn btn-success mt-3 mb-3" %>
           <% end %>
         <% else %>
+        <div class="text-center">
           <strong class="m-5">レビューをいただきありがとうございました！</strong>
+        </div>
         <% end %>
       <% end %>
     </div>

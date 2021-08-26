@@ -32,6 +32,7 @@ ja:
       user:
         name: "お名前"
         email: "メールアドレス"
+        introduction: "自己紹介"
         password: "パスワード"
         password_confirmation: "パスワード確認"
       genre:
