@@ -45,16 +45,27 @@ require 'rails_helper'
       end
 
       it 'インスタンス変数の属性をアップデート' do
-        patch admin_genre_path(genre), params: { genre: attributes_for(:genre, name: 'hoge', genre_image: 'hogehoge')}
+        patch admin_genre_path(genre), params: { genre: attributes_for(:genre, name: "hoge", genre_image: Rack::Test::UploadedFile.new(File.join(File.join(Rails.root, '/spec/fixtures/images/test2.jpg'))))}
         genre.reload
         expect(genre.name).to eq("hoge")
-        expect(genre.genre_image).to eq("hogehoge")
+        expect(genre.genre_image.url).to match(/test2.jpg/) #正規表現を使用
       end
 
-      # it "投稿成功後、一覧画面へ遷移する" do
-      #   patch admin_genre_path(genre), params: { genre: attributes_for(:genre) }
-      #   expect(response).to redirect_to admin_genres_path
-      # end
+      it "投稿成功後、一覧画面へ遷移する" do
+        patch admin_genre_path(genre), params: { genre: attributes_for(:genre) }
+        expect(response).to redirect_to admin_genre_path(genre)
+      end
+    end
 
+    describe 'DELETE #destroy' do
+      subject { delete admin_genre_path(genre), params: { id: genre.id }}
+      it "ジャンルを削除する" do
+        expect{ subject }.to change(Genre, :count).by(0)
+      end
+
+      it "削除後、ジャンル一覧へ遷移する" do
+        subject
+        expect(response).to redirect_to admin_genres_path
+      end
     end
   end

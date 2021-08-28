@@ -39,7 +39,6 @@ describe Recipe do
 
     # context 'レシピの材料欄のバリデーション' do
     #   it "材料名が空欄の場合、無効となる" do
-    #     recipe = build(:recipe)
         
     #     expect(recipe.errors[:ingrdient]).to include("が入力されていません。")
     #   end
