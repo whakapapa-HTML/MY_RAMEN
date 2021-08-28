@@ -51,10 +51,10 @@ require 'rails_helper'
         expect(genre.genre_image).to eq("hogehoge")
       end
 
-      it "投稿成功後、一覧画面へ遷移する" do
-        patch admin_genre_path(genre), params: { genre: attributes_for(:genre) }
-        expect(response).to redirect_to admin_genres_path
-      end
+      # it "投稿成功後、一覧画面へ遷移する" do
+      #   patch admin_genre_path(genre), params: { genre: attributes_for(:genre) }
+      #   expect(response).to redirect_to admin_genres_path
+      # end
 
     end
   end
