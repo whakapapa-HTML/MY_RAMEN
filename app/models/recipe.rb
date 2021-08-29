@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
 
   mount_uploader :recipe_image, RecipeImageUploader
 
-  accepts_nested_attributes_for :ingredients, :procedures, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, :procedures, reject_if: :all_blank, allow_destroy: true
 
   with_options presence: true do
     validates :serving

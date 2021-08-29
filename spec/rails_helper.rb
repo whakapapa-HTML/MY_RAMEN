@@ -7,7 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # Add additional requires below this line. Rails is not loaded until this point!
-
+require'capybara/rspec'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -37,7 +37,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
   Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f } #support directoryをrequire
   config.include RequestSpecHelper, type: :request #type: :requestのときにRequestHelperをinclude
-
+  config.include Capybara::DSL
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -66,4 +66,5 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
+
 end
