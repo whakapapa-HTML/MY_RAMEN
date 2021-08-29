@@ -10,7 +10,7 @@ require 'rails_helper'
 
     describe 'GET #show' do
         before { get admin_genre_path(genre), params: { genre: { id: genre.id } }}
-      it 'リクエストされたインスタンス変数のテスト' do
+      it 'インスタンス変数とテスト内で作成したgenreが一致しているかを検証' do
         expect(assigns(:genre)).to eq genre  #assignsの引数がインスタンス変数になる -> @genre
       end
 
@@ -21,13 +21,13 @@ require 'rails_helper'
 
     describe 'GET #create' do
       it 'ジャンル登録に成功するとジャンル一覧へ遷移する' do
-        post admin_genres_path, params: { genre: {name: genre.name, genre_image: Rack::Test::UploadedFile.new(File.join(File.join(Rails.root, '/spec/fixtures/images/test.jpg'))) }}
+        post admin_genres_path, params: { genre: attributes_for(:genre) }
         expect(response).to redirect_to admin_genres_path
       end
 
-      context 'ジャンル投稿のバリデーション' do
+      context 'ジャンル投稿失敗時のリダイレクト' do
         example 'ジャンル名がなかった場合' do
-          post admin_genres_path, params: { genre: {name: "", genre_image: Rack::Test::UploadedFile.new(File.join(File.join(Rails.root, '/spec/fixtures/images/test.jpg'))) }}
+          post admin_genres_path, params: { genre: attributes_for(:genre, name: "")}
           expect(response).not_to redirect_to admin_genres_path
         end
 
@@ -60,7 +60,7 @@ require 'rails_helper'
     describe 'DELETE #destroy' do
       subject { delete admin_genre_path(genre), params: { id: genre.id }}
       it "ジャンルを削除する" do
-        expect{ subject }.to change(Genre, :count).by(0)
+        expect{ subject }.to change(Genre,:count).by(-1)
       end
 
       it "削除後、ジャンル一覧へ遷移する" do

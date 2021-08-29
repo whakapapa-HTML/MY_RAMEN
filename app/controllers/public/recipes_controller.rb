@@ -41,6 +41,7 @@ class Public::RecipesController < ApplicationController
   end
 
   def update
+
     if @recipe.update(update_recipe_params)
       redirect_to recipe_path(@recipe.id)
     else
