@@ -51,6 +51,4 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-test
-test2
-test3
+[![](https://img.youtube.com/vi/K3Xoh9Ik2Zo/0.jpg)](https://www.youtube.com/watch?v=K3Xoh9Ik2Zo)
