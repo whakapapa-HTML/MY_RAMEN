@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12 m-auto m-4">
       <h2 class="p-5">◆ 前日比</h2>
-      <table class="table small mb-5">
+      <table class="table table-bordered small mb-5">
         <thead>
           <tr>
             <th>今日の投稿</th>
@@ -13,7 +13,7 @@
         </thead>
       <%= render partial: 'admin/recipes/compare', locals: { present: @recipes_today, prev: @recipes_yesterday} %>
       <h2 class="p-5">◆ 先週比</h2>
-      <table class="table small mb-5">
+      <table class="table table-bordered small mb-5">
         <thead>
           <tr>
             <th>今週の投稿</th>
@@ -24,7 +24,7 @@
       <%= render partial: 'admin/recipes/compare', locals: { present: @recipes_this_week, prev: @recipes_last_week} %>
 
       <h2 class="p-5">◆ 先月比</h2>
-      <table class="table small mb-5">
+      <table class="table table-bordered small mb-5">
         <thead>
           <tr>
             <th>今月の投稿</th>
