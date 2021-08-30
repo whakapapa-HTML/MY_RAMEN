@@ -13,7 +13,7 @@ class Admin::RecipesController < ApplicationController
 
   def destroy
     @recipe.destroy
-    redirect_to admin_root_path
+    redirect_to admin_recipes_path, notice: '削除に成功しました！'
   end
 
   def genre_chart
