@@ -1,0 +1,22 @@
+<div class="content p-5">
+      <div class="col-10 m-auto">
+        <table class="table small col-lg-10 col-md-10 col-sm-12 m-auto table-hover">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">レシピ名</th>
+            <th scope="col">レシピ紹介</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% user.recipes.each_with_index do |recipe, i| %>
+          <tr>
+            <th scope="row"><%= i + 1 %></th>
+            <td><%= link_to recipe.name, recipe_path(recipe.id) %></td>
+            <td><%= recipe.introduction %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>

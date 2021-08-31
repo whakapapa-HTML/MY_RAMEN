@@ -1,0 +1,26 @@
+<div class="content p-5">
+      <div class="col-10 m-auto">
+      <table class="table small table-hover">
+        <thead>
+          <tr>
+            <th style="width: 20%">投稿者名</th>
+            <th style="width: 40%">レシピ名</th>
+            <th style="width: 40%">レシピ紹介</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% bookmarks.each do |bookmark| %>
+            <tr>
+              <td><%= bookmark.recipe.user.name %></td>
+              <td>
+                <%= link_to recipe_path(bookmark.recipe) do %>
+                  <%= bookmark.recipe.name %>
+                <% end %>
+              </td>
+              <td><%= bookmark.recipe.introduction %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

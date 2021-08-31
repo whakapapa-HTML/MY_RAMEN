@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="tab-area">
     <div class="tab active">
@@ -17,127 +18,11 @@
     </div>
   </div>
   <div class="content-area">
-    <div class="content show p-5">
-     <table class="table small col-lg-10 col-md-10 col-sm-12 m-auto">
-        <tr>
-          <td>ユーザー名</td>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <td>自己紹介</td>
-          <td><%= @user.introduction %></td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= @user.email %></td>
-        </tr>
-      </table>
-      <div><%= link_to "編集する", my_page_edit_path, class: "btn btn-primary mt-5" %></div>
-    </div>
-    <div class="content p-5">
-      <div class="col-10 m-auto">
-        <table class="table small col-lg-10 col-md-10 col-sm-12 m-auto table-hover">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">レシピ名</th>
-            <th scope="col">レシピ紹介</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user.recipes.each_with_index do |recipe, i| %>
-          <tr>
-            <th scope="row"><%= i + 1 %></th>
-            <td><%= link_to recipe.name, recipe_path(recipe.id) %></td>
-            <td><%= recipe.introduction %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      </div>
-    </div>
-    <div class="content p-5">
-      <table class="table small table-hover">
-        <thead>
-          <tr>
-            <th style="width: 20%">フォロー</th>
-            <th style="width: 40%">紹介</th>
-            <th style="width: 40%">投稿したラーメン</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @followings.each do |following| %>
-            <tr>
-              <td><%= following.name %></td>
-              <td><%= following.introduction %></td>
-              <td>
-                <% following.recipes.each do |recipe| %>
-                <div class="flex-column">
-                  <%= link_to recipe_path(recipe.id) do %>
-                    <%= recipe.name %>
-                  <% end %>
-                </div>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="content p-5">
-      <table class="table small table-hover">
-        <thead>
-          <tr>
-            <th style="width: 20%">フォロワー</th>
-            <th style="width: 40%">紹介</th>
-            <th style="width: 40%">投稿したラーメン</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @followers.each do |follower| %>
-            <tr>
-              <td><%= follower.name %></td>
-              <td><%= follower.introduction %></td>
-              <td>
-                <% follower.recipes.each do |recipe| %>
-                <div class="flex-column">
-                  <%= link_to recipe_path(recipe.id) do %>
-                    <%= recipe.name %>
-                  <% end %>
-                </div>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="content p-5">
-      <div class="col-10 m-auto">
-      <table class="table small table-hover">
-        <thead>
-          <tr>
-            <th style="width: 20%">投稿者名</th>
-            <th style="width: 40%">レシピ名</th>
-            <th style="width: 40%">レシピ紹介</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @bookmarks.each do |bookmark| %>
-            <tr>
-              <td><%= bookmark.recipe.user.name %></td>
-              <td>
-                <%= link_to recipe_path(bookmark.recipe) do %>
-                  <%= bookmark.recipe.name %>
-                <% end %>
-              </td>
-              <td><%= bookmark.recipe.introduction %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <%= render 'user_information', user: @user %>
+    <%= render 'user_recipes', user: @user %>
+    <%= render 'user_followings', followings: @followings %>
+    <%= render 'user_followers', followers: @followers %>
+    <%= render 'user_bookmarks', bookmarks: @bookmarks %>
 </div>
 
  <script>

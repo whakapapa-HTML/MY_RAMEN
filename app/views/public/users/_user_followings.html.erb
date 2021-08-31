@@ -1,0 +1,30 @@
+
+<div class="content p-5">
+      <table class="table small table-hover">
+        <thead>
+          <tr>
+            <th style="width: 20%">フォロー</th>
+            <th style="width: 40%">紹介</th>
+            <th style="width: 40%">投稿したラーメン</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% followings.each do |following| %>
+            <tr>
+              <td><%= following.name %></td>
+              <td><%= following.introduction %></td>
+              <td>
+                <% following.recipes.each do |recipe| %>
+                <div class="flex-column">
+                  <%= link_to recipe_path(recipe.id) do %>
+                    <%= recipe.name %>
+                  <% end %>
+                </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
