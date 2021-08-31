@@ -113,33 +113,7 @@
         <div class="col-lg-5 col-md-12 col-sm-12	d-block d-md-none"><p><%= procedure.explanation %></p></div>
       <% end %>
     </div>
-    <div class="col-lg-8 col-md-8 col-sm-12 mt-5 mx-auto p-5 bg-light border rounded">
-      <% if current_user %>
-        <% if @recipe.reviews.where(user_id: current_user.id).blank? %>
-        <%= render 'layouts/error_message', obj: @recipe %>
-          <strong><i class="fas fa-edit mr-3"></i>レビューを書く</strong>
-          <%= form_with(model:[@recipe, @review], url: recipe_reviews_path(recipe_id: @recipe.id), method: :post, local: true) do |f| %>
-            <div class="form-group mt-3">
-              <%= f.label :タイトル %>
-              <%= f.text_field :title, class: "mt-2 form-control font-large input-lg" %></br>
-            </div>
-            <div class="form-group form-lg">
-              <%= f.label :内容 %>
-              <%= f.text_area :body, class: "mt-2 form-control input-lg" %></br>
-            </div>
-            <div class="form-group" id="star">
-              <% f.label :evaluation %>
-              <%= f.hidden_field :evaluation, id: :review_star, class:'form-control' %>
-            </div>
-            <%= f.submit "送信する", class:"btn btn-success mt-3 mb-3" %>
-          <% end %>
-        <% else %>
-        <div class="text-center">
-          <strong class="m-5">レビューをいただきありがとうございました！</strong>
-        </div>
-        <% end %>
-      <% end %>
-    </div>
+    <%= render "public/recipes/review_fields", { recipe: @recipe, review: @review } %>
   </div>
 
 <script>

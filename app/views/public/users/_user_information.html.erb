@@ -1,0 +1,17 @@
+<div class="content show p-5">
+     <table class="table small col-lg-10 col-md-10 col-sm-12 m-auto">
+        <tr>
+          <td>ユーザー名</td>
+          <td><%= user.name %></td>
+        </tr>
+        <tr>
+          <td>自己紹介</td>
+          <td><%= user.introduction %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= user.email %></td>
+        </tr>
+      </table>
+      <div><%= link_to "編集する", my_page_edit_path, class: "btn btn-primary mt-5" %></div>
+    </div>
