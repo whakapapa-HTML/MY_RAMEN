@@ -36,12 +36,5 @@ describe Recipe do
         expect(recipe.errors[:recipe_image]).to include("が入力されていません。")
       end
     end
-
-    # context 'レシピの材料欄のバリデーション' do
-    #   it "材料名が空欄の場合、無効となる" do
-        
-    #     expect(recipe.errors[:ingrdient]).to include("が入力されていません。")
-    #   end
-    # end
   end
 end

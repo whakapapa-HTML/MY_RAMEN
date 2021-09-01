@@ -2,12 +2,8 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
-  let!(:user) { FactoryBot.create(:user, name: 'capybara', email: 'capybara@mail.com', password: 'password')}
-
-  before do
-    driven_by :rack_test
-  end
-
+  let!(:user) { create(:user, name: 'capybara', email: 'capybara@mail.com', password: 'password')}
+  
   shared_context "ログインしている" do
     before do
       visit new_user_session_path
@@ -26,7 +22,6 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'users/sessions' do
-
     it '有効なログインの場合、ルート画面に遷移すること' do
       visit new_user_session_path
       fill_in 'user[email]', with: 'capybara@mail.com'
@@ -57,14 +52,13 @@ RSpec.describe "Users", type: :system do
 
   describe 'users/edit' do
     include_context "ログインしている"
-    it 'マイページ遷移後に、変更する、' do
-      fill_in 'user[name]', with: 'test1'
-      fill_in 'user[introduction]', with: 'test1'
-      click_button '変更する'
-      visit my_page_path
-    end
-    
     include_context "編集ページへ遷移する"
+    it '編集ページ遷移後に、３つのリンクが表示されていること' do
+      expect(page).to have_button '変更する'  # inputはvalueの値をhave_buttonで確認する
+      expect(page).to have_link '退会手続きへ'
+      expect(page).to have_link '戻る'
+    end
+
     it '有効なユーザー編集の場合、マイページへリダイレクトすること' do
       fill_in 'user[name]', with: 'test1'
       fill_in 'user[introduction]', with: 'test1'
@@ -84,7 +78,7 @@ RSpec.describe "Users", type: :system do
       fill_in 'user[name]', with: 'test'
       fill_in 'user[introduction]', with: ''
       click_button '変更する'
-       visit my_page_path
+      visit my_page_path
     end
   end
 end
