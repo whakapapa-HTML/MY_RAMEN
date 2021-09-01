@@ -48,7 +48,7 @@ require 'rails_helper'
         patch admin_genre_path(genre), params: { genre: attributes_for(:genre, name: "hoge", genre_image: Rack::Test::UploadedFile.new(File.join(File.join(Rails.root, '/spec/fixtures/images/test2.jpg'))))}
         genre.reload
         expect(genre.name).to eq("hoge")
-        expect(genre.genre_image.url).to match(/test2.jpg/) #正規表現を使用
+        expect(genre.genre_image.url).to match(/test2.jpg/) #正規表現で変更したurlが含まれているか確認
       end
 
       it "投稿成功後、一覧画面へ遷移する" do
