@@ -51,6 +51,4 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-test
-test2
-test3
+
