@@ -71,7 +71,6 @@ RSpec.describe "applicaion/layouts/header", type: :system do
         expect(page).to have_link '会員一覧'
         expect(page).to have_link 'レシピ一覧'
         expect(page).to have_link 'ジャンル一覧'
-
       end
     end
   end
