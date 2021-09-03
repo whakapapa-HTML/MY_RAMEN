@@ -60,17 +60,18 @@ RSpec.describe "applicaion/layouts/header", type: :system do
 
     context 'ログイン後のヘッダー' do
       include_context '管理者ログイン状態'
-      
+
       it 'フラッシュメッセージが出ること' do
         expect(page).to have_content 'ログインしました。'
       end
-      
+
       it 'ログアウト、お問い合わせ一覧、会員一覧、レシピ一覧、ジャンル一覧' do
         expect(page).to have_link 'ログアウト'
         expect(page).to have_link 'お問い合わせ一覧'
         expect(page).to have_link '会員一覧'
         expect(page).to have_link 'レシピ一覧'
         expect(page).to have_link 'ジャンル一覧'
+
       end
     end
   end
