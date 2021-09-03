@@ -48,6 +48,7 @@ RSpec.describe "applicaion/layouts/header", type: :system do
         fill_in 'admin[password]', with: admin.password
         click_button 'ログイン'
       end
+      
     end
     context 'ログイン前のヘッダー' do
       it 'ログイン、新規登録リンク、検索フィールドがあること' do
