@@ -6,6 +6,12 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+  enums:
+    contact: 
+      status:
+        outstanding: "未対応"
+        in_progress: "対応中"
+        closed: "対応済"
   activerecord:
     models:
       recipe: "レシピ"
