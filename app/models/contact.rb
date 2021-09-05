@@ -6,5 +6,5 @@ class Contact < ApplicationRecord
     validates :body
   end
 
-  enum status: { 未対応: 0, 対応中: 1, 対応済み: 2 }
+  enum status: { outstanding: 0, in_progress: 1, closed: 2 }#　日本語NG
 end

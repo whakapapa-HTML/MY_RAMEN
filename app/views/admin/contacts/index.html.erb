@@ -21,16 +21,16 @@
                   <td><%= contact.user.name %></td>
                   <td><%= contact.title %></td>
                   <td><%= contact.created_at.strftime("%Y年%m月%d日") %></td>
-                  <% if contact.status == "未対応" %>
+                  <% if contact.status == "outstanding" %>
                   <td><p class="text-primary">未対応</p></td>
-                  <% elsif contact.status == '対応中' %>
+                  <% elsif contact.status == 'in_progress' %>
                   <td><p class="text-success">対応中</p></td>
                   <% else %>
                   <td><p class="text-danger">対応済み</p></td>
                   <% end %>
                   <td>
                     <%= form_with model: contact, url: status_admin_contact_path(contact.id), method: :patch, local: true do |f| %>
-                      <%= f.select :status, Contact.statuses.keys %>
+                      <%= f.select :status, Contact.statuses.keys.map {|k| [I18n.t("enums.contact.status.#{k}"), k]} %>
                       <%= f.submit "変更" %>
                     <% end %>
                   </td>
