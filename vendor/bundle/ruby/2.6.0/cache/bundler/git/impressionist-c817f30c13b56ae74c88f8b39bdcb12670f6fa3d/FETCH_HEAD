@@ -1,0 +1,39 @@
+7ab7dd0aab436b5c8614b41d72284371672af6b8		branch '2.0.rc1' of https://github.com/charlotte-ruby/impressionist
+c91deb03d031dfc41cb80cc1cd4c65cc5cab2fe9		branch 'fix_issue_123' of https://github.com/charlotte-ruby/impressionist
+46a582ff8cd3496da64f174b30b91f9d97e86643		branch 'master' of https://github.com/charlotte-ruby/impressionist
+64144c37aae210c2f97316a275e83fb2f3962305	not-for-merge	tag 'v0.1.1' of https://github.com/charlotte-ruby/impressionist
+def7abe6635dcfdef8cbc9d0096df840a0a6e0f6	not-for-merge	tag 'v0.1.2' of https://github.com/charlotte-ruby/impressionist
+dd55bb43b13e49a032802dcf956d5915bc1cf189	not-for-merge	tag 'v0.2.0' of https://github.com/charlotte-ruby/impressionist
+ea27abcd3bc7441a132cdc69f5a2d3ec6c28ce81	not-for-merge	tag 'v0.2.1' of https://github.com/charlotte-ruby/impressionist
+a9cf1cd9e1713e4f610d01357536e6419f9369d7	not-for-merge	tag 'v0.2.2' of https://github.com/charlotte-ruby/impressionist
+993dba13582d98e2121ef0f8e14d32e7adff3f9a	not-for-merge	tag 'v0.2.3' of https://github.com/charlotte-ruby/impressionist
+ade9f0c3e2702ab23d6c8531d701e8f241121753	not-for-merge	tag 'v0.2.4' of https://github.com/charlotte-ruby/impressionist
+9f73954ce70725ec6456b5d568db259dbc628d88	not-for-merge	tag 'v0.2.5' of https://github.com/charlotte-ruby/impressionist
+03d6f8f0dbea3996a018e4e261cefc5ca4e560fe	not-for-merge	tag 'v0.3.0' of https://github.com/charlotte-ruby/impressionist
+f61a913b4229636de4d61b224f32b989734b3f04	not-for-merge	tag 'v0.3.1' of https://github.com/charlotte-ruby/impressionist
+42da4a22fe54f08f19c2f1c5069f4d3762d8d6ee	not-for-merge	tag 'v0.3.2' of https://github.com/charlotte-ruby/impressionist
+632037dc53ae6298ee9a3c549efa3df2dd70d2de	not-for-merge	tag 'v0.4.0' of https://github.com/charlotte-ruby/impressionist
+2d462ce3fb9ac91a06df290376722db44892e8ac	not-for-merge	tag 'v1.0.1' of https://github.com/charlotte-ruby/impressionist
+55af0edf815a07cd018279ae178f60cf3368b69b	not-for-merge	tag 'v1.1.0' of https://github.com/charlotte-ruby/impressionist
+0cf1ea5910d0fe3cf1b51c0800e24c98cf2ec4b4	not-for-merge	tag 'v1.1.1' of https://github.com/charlotte-ruby/impressionist
+d9cee60dd112a8dfcfba2dc056c5ce61cd34cfbc	not-for-merge	tag 'v1.2.0' of https://github.com/charlotte-ruby/impressionist
+3ff1584497d4ae8851bb87dfd8a62eeb8123b367	not-for-merge	tag 'v1.3.0' of https://github.com/charlotte-ruby/impressionist
+22a41bbb09102a50dc0b2fd8e5db2bb26f882c5d	not-for-merge	tag 'v1.3.1' of https://github.com/charlotte-ruby/impressionist
+ddb85b139718e09094bdf2ae4daee19f80016aaa	not-for-merge	tag 'v1.3.2' of https://github.com/charlotte-ruby/impressionist
+214bb9b7514c79780ea85d8763d7cb9080df5bb0	not-for-merge	tag 'v1.3.3' of https://github.com/charlotte-ruby/impressionist
+14ca2a67c2825ab3be76f16bb2f529a53d16cced	not-for-merge	tag 'v1.4.0' of https://github.com/charlotte-ruby/impressionist
+dc1f499feb139f74be5bc181ef3b87ce124e2e27	not-for-merge	tag 'v1.4.1' of https://github.com/charlotte-ruby/impressionist
+737fce3642af7717ab6a7d865736789c0c5cbaa0	not-for-merge	tag 'v1.4.10' of https://github.com/charlotte-ruby/impressionist
+4fa32a9325d1ab90857a9c9a897380ca1e09a9ac	not-for-merge	tag 'v1.4.11' of https://github.com/charlotte-ruby/impressionist
+de59c062a991581cc232b45769e4275a2aa8d13b	not-for-merge	tag 'v1.4.12' of https://github.com/charlotte-ruby/impressionist
+975df59b3d4b8165596d9fbd6fa2eaf61b4c1aef	not-for-merge	tag 'v1.4.13' of https://github.com/charlotte-ruby/impressionist
+cf1d6f1ac3b4ab634fc42a70961c5917429dec95	not-for-merge	tag 'v1.4.2' of https://github.com/charlotte-ruby/impressionist
+af924876979fc3f54f0b237b2030e4fe1bd0628e	not-for-merge	tag 'v1.4.3' of https://github.com/charlotte-ruby/impressionist
+c08a565e54e69ac794e579f4a535d4a4043e03fd	not-for-merge	tag 'v1.4.4' of https://github.com/charlotte-ruby/impressionist
+d6c1bc7f578b4fde8524ff37e69e37f95888e0bb	not-for-merge	tag 'v1.4.5' of https://github.com/charlotte-ruby/impressionist
+8bd5bca0f7569d57a3cf35091b424d13494334ed	not-for-merge	tag 'v1.4.6' of https://github.com/charlotte-ruby/impressionist
+0168cb2453e0b196db6967bd6bcd186c4777a464	not-for-merge	tag 'v1.4.9' of https://github.com/charlotte-ruby/impressionist
+5042f1e27336ccba10b8f819184cbc6417e30deb	not-for-merge	tag 'v1.5.0' of https://github.com/charlotte-ruby/impressionist
+9a041bf5d156a1902d5bb3c5bed9f7d42a88f11f	not-for-merge	tag 'v1.6.0' of https://github.com/charlotte-ruby/impressionist
+3c0920174ca817a3fdca9d29c32d5fbd691e9b73	not-for-merge	tag 'v1.6.1' of https://github.com/charlotte-ruby/impressionist
+1c935a8dccfae980e8410a4b480101fe92743886	not-for-merge	tag 'v2.0.0' of https://github.com/charlotte-ruby/impressionist
