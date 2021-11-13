@@ -40,6 +40,12 @@
 
 
 ## 　設計書
+<ユーザーER図></br>
+<img width="548" alt="スクリーンショット 2021-11-13 20 54 48" src="https://user-images.githubusercontent.com/80505290/141643089-00f1f70c-c2ba-49f4-b0c2-41abddaafeed.png"></br>
+<ユーザーワイヤーフレーム></br>
+<img width="630" alt="スクリーンショット 2021-11-13 20 56 09" src="https://user-images.githubusercontent.com/80505290/141643094-90b2499e-c8cc-4db9-94a8-b44243687865.png"></br>
+<管理者ワイヤーフレーム></br>
+<img width="488" alt="スクリーンショット 2021-11-13 20 57 15" src="https://user-images.githubusercontent.com/80505290/141643097-c006b018-bff6-465f-b96a-1c47ba394fe1.png">
 
 ## ■　チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/165kGQyn5UAMGVKJousXkSD3VdewVQZ-CtNpzoCgr2Aw/edit?usp=sharing>
