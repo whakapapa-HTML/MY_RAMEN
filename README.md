@@ -1,4 +1,5 @@
 # MY_RAMEN
+<img width="1440" alt="スクリーンショット 2021-11-13 21 09 01" src="https://user-images.githubusercontent.com/80505290/141643272-98a3f512-53ba-4b43-8cd5-514d520e54c0.png">
 
 ## サイト概要
 ラーメンのオリジナルレシピを投稿できる
